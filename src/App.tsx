@@ -44,7 +44,7 @@ function App() {
 
   if (loading) {
     return (
-      <Container maxWidth="sm" sx={{ mt: 4, display: "flex", justifyContent: "center" }}>
+      <Container maxWidth="md" sx={{ mt: { xs: 1, sm: 2 }, display: "flex", justifyContent: "center" }}>
         <CircularProgress />
       </Container>
     );
@@ -52,7 +52,7 @@ function App() {
 
   if (error) {
     return (
-      <Container maxWidth="sm" sx={{ mt: 4 }}>
+      <Container maxWidth="md" sx={{ mt: { xs: 1, sm: 2 } }}>
         <Alert severity="error">Failed to load schema: {error}</Alert>
       </Container>
     );
@@ -63,7 +63,7 @@ function App() {
   }
 
   return (
-    <Container maxWidth="sm" sx={{ mt: 4 }}>
+    <Container maxWidth="md" sx={{ mt: { xs: 1, sm: 2 } }}>
       <SchemaForm schema={schema} />
     </Container>
   );

@@ -26,6 +26,11 @@ const schemaData: SchemaData = {
           name: "preferences",
           title: "Preferences",
         },
+        {
+          name: "feedback",
+          title: "Feedback",
+          collapsable: true,
+        },
       ],
       fields: [
         {
@@ -78,24 +83,42 @@ const schemaData: SchemaData = {
           optionsUrl: "/data/countries.json",
         },
         {
+          name: "phoneNumber",
+          type: "text",
+          label: "Phone Number",
+          groupName: "personalInfo",
+          placeholder: "Enter your phone number",
+        },
+        {
+          name: "preferredContactMethod",
+          type: "select",
+          label: "Preferred Contact Method",
+          groupName: "preferences",
+          options: ["Email", "Phone", "SMS"],
+          defaultValue: "Email",
+          validationConditions: {
+            required: true,
+            requiredErrorText: "Please select a contact method",
+          },
+        },
+        {
           name: "subscribe",
           type: "boolean",
           label: "Subscribe to newsletter",
           groupName: "preferences",
           defaultValue: false,
         },
-      ],
-    },
-    {
-      name: "examplePage 2",
-      fieldGroups: [
         {
-          name: "feedback",
-          title: "Feedback",
-          collapsable: true,
+          name: "terms",
+          type: "boolean",
+          label: "I agree to the terms and conditions",
+          groupName: "preferences",
+          defaultValue: false,
+          validationConditions: {
+            required: true,
+            requiredErrorText: "You must agree to the terms and conditions",
+          },
         },
-      ],
-      fields: [
         {
           name: "satisfaction",
           type: "select",
@@ -106,7 +129,7 @@ const schemaData: SchemaData = {
         },
         {
           name: "comments",
-          type: "text",
+          type: "comment",
           label: "Additional Comments",
           groupName: "feedback",
           placeholder: "Enter your comments here...",

@@ -49,21 +49,23 @@ const SchemaPage = ({ page }: Props) => {
           <TextComp data={page.subText} />
         </Box>
       )}
-      {schemaContent.map((item, index) => {
-        if (typeof item === "object" && "group" in item) {
-          // Render a field group with its fields as children
-          return (
-            <FieldGroup key={index} group={item.group}>
-              {item.fields.map((field) => (
-                <SchemaField key={field.name} field={field} />
-              ))}
-            </FieldGroup>
-          );
-        } else {
-          // Render a single field
-          return <SchemaField key={(item as FieldData).name} field={item as FieldData} />;
-        }
-      })}
+      <Box gap={4} display="flex" flexDirection="column" id={`Page ${page.name || "unnamed"} root`}>
+        {schemaContent.map((item, index) => {
+          if (typeof item === "object" && "group" in item) {
+            // Render a field group with its fields as children
+            return (
+              <FieldGroup key={index} group={item.group}>
+                {item.fields.map((field) => (
+                  <SchemaField key={field.name} field={field} />
+                ))}
+              </FieldGroup>
+            );
+          } else {
+            // Render a single field
+            return <SchemaField key={(item as FieldData).name} field={item as FieldData} />;
+          }
+        })}
+      </Box>
     </Box>
   );
 };

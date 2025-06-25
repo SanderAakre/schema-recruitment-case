@@ -21,10 +21,36 @@ const SchemaField = ({ field }: Props) => {
         />
       );
     case "boolean":
-      return <FormControlLabel control={<Checkbox defaultChecked={!!field.defaultValue} />} label={field.label ?? field.name} />;
+      return <FormControlLabel sx={{ width: "100%" }} control={<Checkbox defaultChecked={!!field.defaultValue} />} label={field.label ?? field.name} />;
+    case "select":
+      return <SelectField field={field} />;
+    case "multiSelect":
+      return <MultiSelectField field={field} />;
+    case "comment":
+      return (
+        <TextField
+          fullWidth
+          margin="normal"
+          type="text"
+          label={field.label ?? field.name}
+          placeholder={field.placeholder}
+          defaultValue={field.defaultValue}
+          helperText={field.description}
+          multiline
+          rows={4}
+        />
+      );
     default:
       return null;
   }
 };
 
 export default SchemaField;
+
+const SelectField = ({ field }: Props) => {
+  // Check what type of select field it is and render accordingly
+};
+
+const MultiSelectField = ({ field }: Props) => {
+  // Render a multi-select field
+};
