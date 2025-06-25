@@ -12,30 +12,15 @@ export interface SchemaData {
 
 // Contains the data that make up one page of the form
 export interface PageData {
-  title?: textData; // Optional title for the page, will be displayed in the UI
-  subText?: textData; // Optional subtext that shows below the title
+  title?: string | textData; // Optional title for the page, will be displayed in the UI
+  subText?: string | textData; // Optional subtext that shows below the title
   fieldGroup?: GroupData[]; // Optional array of field groups, which can be used to group fields together
   fields: FieldData[]; // Array of fields that will be displayed on the page
   nextPageButtonSettings?: ButtonData; // Optional settings for the next page button
   tailwindClasses?: string; // Optional Tailwind CSS classes to apply to the page container
 }
 
-// Contains the data for each individual field in the form.
-export interface FieldData {
-  name: string; // Name of the field, should be unique!
-  type?: "text" | "number" | "boolean" | "dropdown" | "autoFill" | ""; // Default to "text"
-  label?: string; // Label that is displayed. Will default to the field name
-  groupName?: string; // If set, the field will be grouped with other fields with the same group name
-  helpText?: string; // Optional help tooltip text that shows when hovering a "?" icon next to the field label
-  description?: string; // Optional description that shows below the field
-  placeholder?: string; // Placeholder text for the field
-  defaultValue?: string | number | boolean; // Default value for the field, if applicable
-  options?: string[]; // For select type fields
-  validationConditions?: FieldConditions; // Validation conditions for the field, where the field will only be valid if the conditions are met
-  dependencies?: Dependency[]; // Optional array of dependencies, where the field will only be shown if the conditions are met
-  tailwindClasses?: string; // Optional Tailwind CSS classes to apply to the field container
-}
-
+// Contains data for field groups, which can be used to organize fields into logical sections, and can be collapsible.
 export interface GroupData {
   name: string; // Name of the field group, should be unique!
   label?: string; // Label that is displayed for the group, defaults to the group name
@@ -43,6 +28,33 @@ export interface GroupData {
   collapsable?: boolean; // Default to false, if true, the group can be collapsed
   startCollapsed?: boolean; // Default to false, if true, the group starts collapsed (only relevant if collapsable is true, obviously)
   tailwindClasses?: string; // Optional Tailwind CSS classes to apply to the group container
+}
+
+// Contains the data for each individual field in the form.
+export interface FieldData {
+  name: string; // Name of the field, should be unique!
+  type?: "text" | "comment" | "number" | "boolean" | "select" | "multiSelect"; // Default to "text"
+  selectType?: "dropdown" | "autofill" | "radio"; // Type of select field, default to "dropdown"
+  options?: SelectOption[];
+  optionsUrl?: string; // Optional URL to fetch options from instead of using the options array
+  label?: string; // Label that is displayed. Will default to the field name
+  groupName?: string; // If set, the field will be grouped with other fields with the same group name
+  helpText?: string; // Optional help tooltip text that shows when hovering a "?" icon next to the field label
+  description?: string; // Optional description that shows below the field
+  placeholder?: string; // Placeholder text for the field
+  defaultValue?: string | number | boolean; // Default value for the field, if applicable
+  validationConditions?: FieldConditions; // Validation conditions for the field, where the field will only be valid if the conditions are met
+  dependencies?: Dependency[]; // Optional array of dependencies, where the field will only be shown if the conditions are met
+  tailwindClasses?: string; // Optional Tailwind CSS classes to apply to the field container
+}
+
+// *** Field Type Data ***
+
+// Contains the data for a select option
+export interface SelectOption {
+  value: string; // Value of the option
+  label?: string; // Optional label for the option, if not provided, the value will be used as the label
+  aliases?: string[]; // Optional alias for the option, used for autofill select type
 }
 
 // *** UI Component Data ***
@@ -71,15 +83,17 @@ export interface spanData {
   underline?: boolean; // Default to false, if true, the text will be underlined
 }
 
-// ***  Conditions & Dependency Data ***
-
-// Contains the data for the submit button on the last page
-export interface SubmitData {
-  submitText?: string; // Default to "Submit"
-  successMessage?: string; // Default to "Form submitted successfully"
-  confirmation?: ConfirmationData; // Confirmation dialog. Will use deafault values if not provided
-  tailwindClasses?: string; // Optional Tailwind CSS classes to apply to the submit button
+// contains the data for generic confirmation dialog
+export interface ConfirmationData {
+  use?: boolean; // Default to true, if false, no confirmation dialog will be shown
+  title?: textData | string; // Title of the confirmation dialog, will be displayed in the UI
+  subText?: textData | string; // Optional description that shows below the title
+  confirmButton?: string | ButtonData; // Text or button data for the confirm button, default to "Confirm"
+  cancelButton?: string | ButtonData; // Text or button data for the cancel button, default to "Cancel"
+  tailwindClasses?: string; // Optional Tailwind CSS classes to apply to the confirmation dialog
 }
+
+// ***  Conditions, Confirmation & Dependency Data ***
 
 export interface Dependency {
   name: string; // Name of the field that this field depends on
@@ -106,14 +120,11 @@ export interface FieldConditions {
   regexErrorText?: string; // Default to "This value does not match the required format"
 }
 
-// *** Misc. Utility Data ***
-
-// contains the data for generic confirmation dialog
-export interface ConfirmationData {
-  use?: boolean; // Default to true, if false, no confirmation dialog will be shown
-  title?: string; // Title of the confirmation dialog, default to "Confirm Action"
-  message?: string; // Message to display in the confirmation dialog, default to "Are you sure you want to proceed?"
-  confirmText?: string; // Text for the confirm button, default to "Confirm"
-  cancelText?: string; // Text for the cancel button, default to "Cancel"
-  tailwindClasses?: string; // Optional Tailwind CSS classes to apply to the confirmation dialog
+// Contains the data for the submit button on the last page
+export interface SubmitData {
+  submitText?: string; // Default to "Submit"
+  successMessage?: string; // Default to "Form submitted successfully"
+  errorMessage?: string; // Default to "An unspecified error occurred while submitting the form"
+  confirmation?: ConfirmationData; // Confirmation dialog. Will use deafault values if not provided
+  tailwindClasses?: string; // Optional Tailwind CSS classes to apply to the submit button
 }
