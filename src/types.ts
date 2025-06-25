@@ -20,7 +20,7 @@ export interface PageData {
   name?: string; // Optional name for the page, mostly for clarity in the schema data
   title?: string | TextData; // Optional title for the page, will be displayed in the UI
   subText?: string | TextData; // Optional subtext that shows below the title
-  fieldGroup?: GroupData[]; // Optional array of field groups, which can be used to group fields together
+  fieldGroups?: GroupData[]; // Optional array of field groups, which can be used to group fields together
   fields: FieldData[]; // Array of fields that will be displayed on the page
   pageButton?: ButtonData; // Optional settings for the next page button, will override the global page button on this page if set
   tailwindClasses?: string; // Optional Tailwind CSS classes to apply to the page container
@@ -29,7 +29,7 @@ export interface PageData {
 // Contains data for field groups, which can be used to organize fields into logical sections, and can be collapsible.
 export interface GroupData {
   name: string; // Name of the field group, should be unique!
-  label?: string; // Label that is displayed for the group, defaults to the group name
+  title?: string | TextData; // Label that is displayed for the group, defaults to the group name
   subText?: TextData; // Optional subtext that shows below the group label
   collapsable?: boolean; // Default to false, if true, the group can be collapsed
   startCollapsed?: boolean; // Default to false, if true, the group starts collapsed (only relevant if collapsable is true, obviously)

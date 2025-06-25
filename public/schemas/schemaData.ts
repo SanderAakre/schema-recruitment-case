@@ -14,16 +14,17 @@ const schemaData: SchemaData = {
   pages: [
     {
       name: "examplePage 1",
-      fieldGroup: [
+      title: "Example Page 1",
+      subText: "This page contains personal information fields.",
+      fieldGroups: [
         {
           name: "personalInfo",
-          label: "Personal Information",
+          title: "Personal Information",
           collapsable: true,
-          startCollapsed: false,
         },
         {
           name: "preferences",
-          label: "Preferences",
+          title: "Preferences",
         },
       ],
       fields: [
@@ -70,29 +71,28 @@ const schemaData: SchemaData = {
           },
         },
         {
-          name: "subscribe",
-          type: "boolean",
-          label: "Subscribe to newsletter",
-          groupName: "preferences",
-          defaultValue: false,
-        },
-        {
           name: "country",
           type: "select",
           label: "Country",
           groupName: "personalInfo",
           optionsUrl: "/data/countries.json",
         },
+        {
+          name: "subscribe",
+          type: "boolean",
+          label: "Subscribe to newsletter",
+          groupName: "preferences",
+          defaultValue: false,
+        },
       ],
     },
     {
       name: "examplePage 2",
-      fieldGroup: [
+      fieldGroups: [
         {
           name: "feedback",
-          label: "Feedback",
+          title: "Feedback",
           collapsable: true,
-          startCollapsed: true,
         },
       ],
       fields: [

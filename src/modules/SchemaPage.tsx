@@ -1,9 +1,10 @@
 // MUI components
-import { Box, Typography } from "@mui/material";
+import { Box } from "@mui/material";
 
 // Custom components
 import SchemaField from "./SchemaField";
 import FieldGroup from "./FieldGroup";
+import TextComp, { PageTitleComp } from "@/components/TextComp";
 
 // Types/interfaces
 import type { PageData, FieldData, GroupData } from "@/types";
@@ -14,7 +15,7 @@ interface Props {
 
 const SchemaPage = ({ page }: Props) => {
   const fields = page.fields;
-  const groups = page.fieldGroup ?? [];
+  const groups = page.fieldGroups ?? [];
 
   // Order the fields into groups if they exist
   const schemaContent: (FieldData | { group: GroupData; fields: FieldData[] })[] = [];
@@ -38,19 +39,19 @@ const SchemaPage = ({ page }: Props) => {
 
   return (
     <Box className={page.tailwindClasses}>
-      {typeof page.title === "string" && (
+      {page.title && (
         <Box mb={2}>
-          <Typography variant="h4">{page.title}</Typography>
+          <PageTitleComp data={page.title} />
         </Box>
       )}
-      {typeof page.subText === "string" && (
+      {page.subText && (
         <Box mb={2}>
-          <Typography variant="body1">{page.subText}</Typography>
+          <TextComp data={page.subText} />
         </Box>
       )}
       {schemaContent.map((item, index) => {
         if (typeof item === "object" && "group" in item) {
-          // Render a field group
+          // Render a field group with its fields as children
           return (
             <FieldGroup key={index} group={item.group}>
               {item.fields.map((field) => (
