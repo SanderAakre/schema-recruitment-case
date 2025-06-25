@@ -9,11 +9,9 @@
     }
   ],
   "compilerOptions": {
-    "baseUrl": ".",
-    "paths": {
-      "@/*": [
-        "src/*"
-      ]
-    }
+    "moduleResolution": "Node",
+    "types": [
+      "vite/client"
+    ]
   }
 }

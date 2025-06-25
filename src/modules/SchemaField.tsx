@@ -1,5 +1,5 @@
 import { TextField, Checkbox, FormControlLabel } from "@mui/material";
-import type { FieldData } from "../types";
+import type { FieldData } from "@/types";
 
 interface Props {
   field: FieldData;

@@ -3,8 +3,17 @@ import type { SchemaData } from "../../src/types";
 const schemaData: SchemaData = {
   title: "Example Schema",
   subText: "This is an example schema to demonstrate the form generation.",
-  page: [
+  globalPageButtonSettings: {
+    nextPageButton: {
+      text: "Neste side",
+    },
+    previousPageButton: {
+      text: "Forrige side",
+    },
+  },
+  pages: [
     {
+      name: "examplePage 1",
       fieldGroup: [
         {
           name: "personalInfo",
@@ -73,7 +82,38 @@ const schemaData: SchemaData = {
           label: "Country",
           groupName: "personalInfo",
           optionsUrl: "/data/countries.json",
-          defaultValue: "USA",
+        },
+      ],
+    },
+    {
+      name: "examplePage 2",
+      fieldGroup: [
+        {
+          name: "feedback",
+          label: "Feedback",
+          collapsable: true,
+          startCollapsed: true,
+        },
+      ],
+      fields: [
+        {
+          name: "satisfaction",
+          type: "select",
+          label: "Satisfaction Level",
+          groupName: "feedback",
+          options: ["Very Satisfied", "Satisfied", "Neutral", "Dissatisfied", "Very Dissatisfied"],
+          defaultValue: "Neutral",
+        },
+        {
+          name: "comments",
+          type: "text",
+          label: "Additional Comments",
+          groupName: "feedback",
+          placeholder: "Enter your comments here...",
+          validationConditions: {
+            maxValue: 500,
+            maxValueErrorText: "Comments cannot exceed 500 characters",
+          },
         },
       ],
     },

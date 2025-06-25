@@ -4,19 +4,25 @@
 
 // The parent data object. Contains the data for the entire schema, which includes multiple pages and their fields.
 export interface SchemaData {
-  title: string | textData; // Title of the schema, will be displayed in the UI
-  subText?: string | textData; // Optional description that shows below the title
-  page: PageData[]; // Array of pages, each containing fields and optional field groups
+  title: string | TextData; // Title of the schema, will be displayed in the UI
+  subText?: string | TextData; // Optional description that shows below the title
+  pages: PageData[]; // Array of pages, each containing fields and optional field groups
+  globalPageButtonSettings?: {
+    nextPageButton?: ButtonData; // Optional settings for the next page button, will be used as default for all pages
+    previousPageButton?: ButtonData; // Optional settings for the previous page button, will be used as default for all pages
+  };
   submitSettings?: SubmitData;
+  tailwindClasses?: string; // Optional Tailwind CSS classes to apply to the schema container
 }
 
 // Contains the data that make up one page of the form
 export interface PageData {
-  title?: string | textData; // Optional title for the page, will be displayed in the UI
-  subText?: string | textData; // Optional subtext that shows below the title
+  name?: string; // Optional name for the page, mostly for clarity in the schema data
+  title?: string | TextData; // Optional title for the page, will be displayed in the UI
+  subText?: string | TextData; // Optional subtext that shows below the title
   fieldGroup?: GroupData[]; // Optional array of field groups, which can be used to group fields together
   fields: FieldData[]; // Array of fields that will be displayed on the page
-  nextPageButtonSettings?: ButtonData; // Optional settings for the next page button
+  pageButton?: ButtonData; // Optional settings for the next page button, will override the global page button on this page if set
   tailwindClasses?: string; // Optional Tailwind CSS classes to apply to the page container
 }
 
@@ -24,7 +30,7 @@ export interface PageData {
 export interface GroupData {
   name: string; // Name of the field group, should be unique!
   label?: string; // Label that is displayed for the group, defaults to the group name
-  subText?: textData; // Optional subtext that shows below the group label
+  subText?: TextData; // Optional subtext that shows below the group label
   collapsable?: boolean; // Default to false, if true, the group can be collapsed
   startCollapsed?: boolean; // Default to false, if true, the group starts collapsed (only relevant if collapsable is true, obviously)
   tailwindClasses?: string; // Optional Tailwind CSS classes to apply to the group container
@@ -35,7 +41,7 @@ export interface FieldData {
   name: string; // Name of the field, should be unique!
   type?: "text" | "comment" | "number" | "boolean" | "select" | "multiSelect"; // Default to "text"
   selectType?: "dropdown" | "autofill" | "radio"; // Type of select field, default to "dropdown"
-  options?: SelectOption[];
+  options?: SelectOption[] | string[]; // Array of options for select fields, either as SelectOption objects or simple strings
   optionsUrl?: string; // Optional URL to fetch options from instead of using the options array
   label?: string; // Label that is displayed. Will default to the field name
   groupName?: string; // If set, the field will be grouped with other fields with the same group name
@@ -67,14 +73,14 @@ export interface ButtonData {
   tailwindClasses?: string; // Optional Tailwind CSS classes to apply to the button
 }
 
-export interface textData {
+export interface TextData {
   text?: string; // Text that will be displayed in the description
   type?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "body1" | "body2" | "caption"; // Default to "body1"
-  spans?: spanData[]; // Optional array of spans, will be used instead of text if provided
+  spans?: SpanData[]; // Optional array of spans, will be used instead of text if provided
   tailwindClasses?: string; // Optional Tailwind CSS classes to apply to the text container
 }
 
-export interface spanData {
+export interface SpanData {
   text: string; // Text that will be displayed in the span
   link?: string; // Optional link that will be applied to the text, if provided, the text will be clickable
   hoverText?: string; // Optional hover text that will be displayed when hovering the text
@@ -86,8 +92,8 @@ export interface spanData {
 // contains the data for generic confirmation dialog
 export interface ConfirmationData {
   use?: boolean; // Default to true, if false, no confirmation dialog will be shown
-  title?: textData | string; // Title of the confirmation dialog, will be displayed in the UI
-  subText?: textData | string; // Optional description that shows below the title
+  title?: TextData | string; // Title of the confirmation dialog, will be displayed in the UI
+  subText?: TextData | string; // Optional description that shows below the title
   confirmButton?: string | ButtonData; // Text or button data for the confirm button, default to "Confirm"
   cancelButton?: string | ButtonData; // Text or button data for the cancel button, default to "Cancel"
   tailwindClasses?: string; // Optional Tailwind CSS classes to apply to the confirmation dialog

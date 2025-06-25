@@ -1,12 +1,12 @@
 // MUI components
-import { Box } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 
 // Custom components
 import SchemaField from "./SchemaField";
 import FieldGroup from "./FieldGroup";
 
 // Types/interfaces
-import type { PageData, FieldData, GroupData } from "../types";
+import type { PageData, FieldData, GroupData } from "@/types";
 
 interface Props {
   page: PageData;
@@ -37,15 +37,15 @@ const SchemaPage = ({ page }: Props) => {
   });
 
   return (
-    <Box component="form">
+    <Box className={page.tailwindClasses}>
       {typeof page.title === "string" && (
         <Box mb={2}>
-          <h1>{page.title}</h1>
+          <Typography variant="h4">{page.title}</Typography>
         </Box>
       )}
       {typeof page.subText === "string" && (
         <Box mb={2}>
-          <p>{page.subText}</p>
+          <Typography variant="body1">{page.subText}</Typography>
         </Box>
       )}
       {schemaContent.map((item, index) => {

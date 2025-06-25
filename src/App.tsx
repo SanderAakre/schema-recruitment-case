@@ -21,7 +21,7 @@ function App() {
 
   useEffect(() => {
     if (!usePlaceholderData) {
-      fetch("/data/schemaData.json")
+      fetch("/schemas/schemaData.json")
         .then((res) => {
           if (!res.ok) throw new Error(`HTTP ${res.status}`);
           return res.json();

@@ -5,7 +5,7 @@ import { Box, Typography, Accordion, AccordionSummary, AccordionDetails } from "
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 
 // Types/interfaces
-import type { GroupData } from "../types";
+import type { GroupData } from "@/types";
 
 interface Props {
   group: GroupData;

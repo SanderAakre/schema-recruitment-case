@@ -1,29 +1,37 @@
-import { Box } from "@mui/material";
-import type { SchemaData } from "../types";
+import React, { useState } from "react";
+
+// MUI components
+import { Box, Typography } from "@mui/material";
+
+// Custom components
 import SchemaPage from "./SchemaPage";
+import TextComp from "@/components/TextComp";
+
+// Types/interfaces
+import type { SchemaData } from "@/types";
 
 interface Props {
   schema: SchemaData;
 }
 
 const SchemaForm = ({ schema }: Props) => {
+  const [currentPage, setCurrentPage] = useState(0);
+
   return (
-    <Box component="form">
-      {typeof schema.title === "string" && (
+    <Box className={schema.tailwindClasses}>
+      {schema.title && <TextComp data={schema.title} />}
+      {schema.subText && <TextComp data={schema.subText} />}
+      {schema.pages && schema.pages.length > 0 ? (
+        schema.pages.map((page, index) => (
+          <Box key={index} mb={2}>
+            <SchemaPage page={page} />
+          </Box>
+        ))
+      ) : (
         <Box mb={2}>
-          <h1>{schema.title}</h1>
+          <Typography variant="body1">No pages available in this schema.</Typography>
         </Box>
       )}
-      {typeof schema.subText === "string" && (
-        <Box mb={2}>
-          <p>{schema.subText}</p>
-        </Box>
-      )}
-      <Box>
-        {schema.page.map((page, index) => (
-          <SchemaPage key={index} page={page} />
-        ))}
-      </Box>
     </Box>
   );
 };
