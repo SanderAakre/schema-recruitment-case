@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { Container, CircularProgress, Alert } from "@mui/material";
 
 // Development data placeholder
-import schemaData from "../public/data/forms/schemaData";
+import schemaData from "../public/schemas/schemaData";
 
 // Types/interfaces
 import type { SchemaData } from "./types";

@@ -1,4 +1,4 @@
-import type { SchemaData } from "../../../src/types";
+import type { SchemaData } from "../../src/types";
 
 const schemaData: SchemaData = {
   title: "Example Schema",
@@ -72,18 +72,7 @@ const schemaData: SchemaData = {
           type: "select",
           label: "Country",
           groupName: "personalInfo",
-          options: [
-            { value: "USA", label: "United States" },
-            { value: "CAN", label: "Canada" },
-            { value: "MEX", label: "Mexico" },
-            { value: "GBR", label: "United Kingdom" },
-            { value: "AUS", label: "Australia" },
-            { value: "IND", label: "India" },
-            { value: "CHN", label: "China" },
-            { value: "JPN", label: "Japan" },
-            { value: "GER", label: "Germany" },
-            { value: "FRA", label: "France" },
-          ],
+          optionsUrl: "/data/countries.json",
           defaultValue: "USA",
         },
       ],
