@@ -1,974 +1,972 @@
-{
-  "countries": [
-    {
-      "value": "AFG",
-      "label": "Afghanistan",
-      "aliases": ["Afghanistan"]
-    },
-    {
-      "value": "ALB",
-      "label": "Albania",
-      "aliases": ["Albania", "Shqipëri"]
-    },
-    {
-      "value": "DZA",
-      "label": "Algerie",
-      "aliases": ["Algeria", "Al-Jaza’ir"]
-    },
-    {
-      "value": "AND",
-      "label": "Andorra",
-      "aliases": ["Andorra"]
-    },
-    {
-      "value": "AGO",
-      "label": "Angola",
-      "aliases": ["Angola"]
-    },
-    {
-      "value": "ATG",
-      "label": "Antigua og Barbuda",
-      "aliases": ["Antigua and Barbuda"]
-    },
-    {
-      "value": "ARG",
-      "label": "Argentina",
-      "aliases": ["Argentina"]
-    },
-    {
-      "value": "ARM",
-      "label": "Armenia",
-      "aliases": ["Armenia", "Hayastan"]
-    },
-    {
-      "value": "AZE",
-      "label": "Aserbajdsjan",
-      "aliases": ["Azerbaijan", "Azərbaycan"]
-    },
-    {
-      "value": "AUS",
-      "label": "Australia",
-      "aliases": ["Australia"]
-    },
-    {
-      "value": "BHS",
-      "label": "Bahamas",
-      "aliases": ["Bahamas", "The Bahamas"]
-    },
-    {
-      "value": "BHR",
-      "label": "Bahrain",
-      "aliases": ["Bahrain"]
-    },
-    {
-      "value": "BGD",
-      "label": "Bangladesh",
-      "aliases": ["Bangladesh"]
-    },
-    {
-      "value": "BRB",
-      "label": "Barbados",
-      "aliases": ["Barbados"]
-    },
-    {
-      "value": "BEL",
-      "label": "Belgia",
-      "aliases": ["Belgium", "België", "Belgique"]
-    },
-    {
-      "value": "BLZ",
-      "label": "Belize",
-      "aliases": ["Belize"]
-    },
-    {
-      "value": "BEN",
-      "label": "Benin",
-      "aliases": ["Benin"]
-    },
-    {
-      "value": "BTN",
-      "label": "Bhutan",
-      "aliases": ["Bhutan"]
-    },
-    {
-      "value": "BOL",
-      "label": "Bolivia",
-      "aliases": ["Bolivia"]
-    },
-    {
-      "value": "BIH",
-      "label": "Bosnia-Hercegovina",
-      "aliases": ["Bosnia and Herzegovina", "Bosna i Hercegovina"]
-    },
-    {
-      "value": "BWA",
-      "label": "Botswana",
-      "aliases": ["Botswana"]
-    },
-    {
-      "value": "BRA",
-      "label": "Brasil",
-      "aliases": ["Brazil", "Brasil"]
-    },
-    {
-      "value": "BRN",
-      "label": "Brunei",
-      "aliases": ["Brunei"]
-    },
-    {
-      "value": "BGR",
-      "label": "Bulgaria",
-      "aliases": ["Bulgaria", "Bălgarija"]
-    },
-    {
-      "value": "BFA",
-      "label": "Burkina Faso",
-      "aliases": ["Burkina Faso"]
-    },
-    {
-      "value": "BDI",
-      "label": "Burundi",
-      "aliases": ["Burundi"]
-    },
-    {
-      "value": "CAN",
-      "label": "Canada",
-      "aliases": ["Canada"]
-    },
-    {
-      "value": "CHL",
-      "label": "Chile",
-      "aliases": ["Chile"]
-    },
-    {
-      "value": "COL",
-      "label": "Colombia",
-      "aliases": ["Colombia"]
-    },
-    {
-      "value": "CRI",
-      "label": "Costa Rica",
-      "aliases": ["Costa Rica"]
-    },
-    {
-      "value": "CUB",
-      "label": "Cuba",
-      "aliases": ["Cuba"]
-    },
-    {
-      "value": "DNK",
-      "label": "Danmark",
-      "aliases": ["Denmark"]
-    },
-    {
-      "value": "ARE",
-      "label": "De forente arabiske emirater",
-      "aliases": ["United Arab Emirates", "UAE"]
-    },
-    {
-      "value": "DOM",
-      "label": "Den dominikanske republikk",
-      "aliases": ["Dominican Republic"]
-    },
-    {
-      "value": "CAF",
-      "label": "Den sentralafrikanske republikk",
-      "aliases": ["Central African Republic"]
-    },
-    {
-      "value": "DJI",
-      "label": "Djibouti",
-      "aliases": ["Djibouti"]
-    },
-    {
-      "value": "DMA",
-      "label": "Dominica",
-      "aliases": ["Dominica"]
-    },
-    {
-      "value": "ECU",
-      "label": "Ecuador",
-      "aliases": ["Ecuador"]
-    },
-    {
-      "value": "EGY",
-      "label": "Egypt",
-      "aliases": ["Egypt", "Misr"]
-    },
-    {
-      "value": "GNQ",
-      "label": "Ekvatorial-Guinea",
-      "aliases": ["Equatorial Guinea"]
-    },
-    {
-      "value": "SLV",
-      "label": "El Salvador",
-      "aliases": ["El Salvador"]
-    },
-    {
-      "value": "CIV",
-      "label": "Elfenbenskysten",
-      "aliases": ["Ivory Coast", "Côte d’Ivoire"]
-    },
-    {
-      "value": "ERI",
-      "label": "Eritrea",
-      "aliases": ["Eritrea"]
-    },
-    {
-      "value": "EST",
-      "label": "Estland",
-      "aliases": ["Estonia", "Eesti"]
-    },
-    {
-      "value": "SWZ",
-      "label": "Eswatini",
-      "aliases": ["Swaziland"]
-    },
-    {
-      "value": "ETH",
-      "label": "Etiopia",
-      "aliases": ["Ethiopia"]
-    },
-    {
-      "value": "FJI",
-      "label": "Fiji",
-      "aliases": ["Fiji"]
-    },
-    {
-      "value": "PHL",
-      "label": "Filippinene",
-      "aliases": ["Philippines", "Pilipinas"]
-    },
-    {
-      "value": "FIN",
-      "label": "Finland",
-      "aliases": ["Suomi"]
-    },
-    {
-      "value": "FRA",
-      "label": "Frankrike",
-      "aliases": ["France"]
-    },
-    {
-      "value": "GAB",
-      "label": "Gabon",
-      "aliases": ["Gabon"]
-    },
-    {
-      "value": "GMB",
-      "label": "Gambia",
-      "aliases": ["The Gambia"]
-    },
-    {
-      "value": "GEO",
-      "label": "Georgia",
-      "aliases": ["Georgia", "Sakartvelo"]
-    },
-    {
-      "value": "GHA",
-      "label": "Ghana",
-      "aliases": ["Ghana"]
-    },
-    {
-      "value": "GRD",
-      "label": "Grenada",
-      "aliases": ["Grenada"]
-    },
-    {
-      "value": "GTM",
-      "label": "Guatemala",
-      "aliases": ["Guatemala"]
-    },
-    {
-      "value": "GIN",
-      "label": "Guinea",
-      "aliases": ["Guinea"]
-    },
-    {
-      "value": "GNB",
-      "label": "Guinea-Bissau",
-      "aliases": ["Guinea-Bissau"]
-    },
-    {
-      "value": "GUY",
-      "label": "Guyana",
-      "aliases": ["Guyana"]
-    },
-    {
-      "value": "HTI",
-      "label": "Haiti",
-      "aliases": ["Haiti"]
-    },
-    {
-      "value": "GRC",
-      "label": "Hellas",
-      "aliases": ["Greece", "Elláda"]
-    },
-    {
-      "value": "HND",
-      "label": "Honduras",
-      "aliases": ["Honduras"]
-    },
-    {
-      "value": "BLR",
-      "label": "Hviterussland",
-      "aliases": ["Belarus", "Bielarus"]
-    },
-    {
-      "value": "IND",
-      "label": "India",
-      "aliases": ["India", "Bhārat"]
-    },
-    {
-      "value": "IDN",
-      "label": "Indonesia",
-      "aliases": ["Indonesia"]
-    },
-    {
-      "value": "IRQ",
-      "label": "Irak",
-      "aliases": ["Iraq"]
-    },
-    {
-      "value": "IRN",
-      "label": "Iran",
-      "aliases": ["Iran"]
-    },
-    {
-      "value": "IRL",
-      "label": "Irland",
-      "aliases": ["Ireland"]
-    },
-    {
-      "value": "ISL",
-      "label": "Island",
-      "aliases": ["Iceland", "Ísland"]
-    },
-    {
-      "value": "ISR",
-      "label": "Israel",
-      "aliases": ["Israel"]
-    },
-    {
-      "value": "ITA",
-      "label": "Italia",
-      "aliases": ["Italy", "Italia"]
-    },
-    {
-      "value": "JAM",
-      "label": "Jamaica",
-      "aliases": ["Jamaica"]
-    },
-    {
-      "value": "JPN",
-      "label": "Japan",
-      "aliases": ["Japan", "Nippon"]
-    },
-    {
-      "value": "YEM",
-      "label": "Jemen",
-      "aliases": ["Yemen"]
-    },
-    {
-      "value": "JOR",
-      "label": "Jordan",
-      "aliases": ["Jordan"]
-    },
-    {
-      "value": "KHM",
-      "label": "Kambodsja",
-      "aliases": ["Cambodia", "Kâmpŭchéa"]
-    },
-    {
-      "value": "CMR",
-      "label": "Kamerun",
-      "aliases": ["Cameroon", "Cameroun"]
-    },
-    {
-      "value": "CPV",
-      "label": "Kapp Verde",
-      "aliases": ["Cape Verde", "Cabo Verde"]
-    },
-    {
-      "value": "KAZ",
-      "label": "Kasakhstan",
-      "aliases": ["Kazakhstan", "Qazaqstan"]
-    },
-    {
-      "value": "KEN",
-      "label": "Kenya",
-      "aliases": ["Kenya"]
-    },
-    {
-      "value": "CHN",
-      "label": "Kina",
-      "aliases": ["China", "Zhōngguó"]
-    },
-    {
-      "value": "KGZ",
-      "label": "Kirgisistan",
-      "aliases": ["Kyrgyzstan", "Kyrgyz Respublikasy"]
-    },
-    {
-      "value": "KIR",
-      "label": "Kiribati",
-      "aliases": ["Kiribati"]
-    },
-    {
-      "value": "COM",
-      "label": "Komorene",
-      "aliases": ["Comoros", "Comores"]
-    },
-    {
-      "value": "COG",
-      "label": "Kongo-Brazzaville",
-      "aliases": ["Republic of the Congo"]
-    },
-    {
-      "value": "COD",
-      "label": "Kongo-Kinshasa",
-      "aliases": ["Democratic Republic of the Congo"]
-    },
-    {
-      "value": "HRV",
-      "label": "Kroatia",
-      "aliases": ["Croatia", "Hrvatska"]
-    },
-    {
-      "value": "KWT",
-      "label": "Kuwait",
-      "aliases": ["Kuwait"]
-    },
-    {
-      "value": "CYP",
-      "label": "Kypros",
-      "aliases": ["Cyprus", "Kýpros"]
-    },
-    {
-      "value": "LAO",
-      "label": "Laos",
-      "aliases": ["Laos", "Lao"]
-    },
-    {
-      "value": "LVA",
-      "label": "Latvia",
-      "aliases": ["Latvia", "Latvija"]
-    },
-    {
-      "value": "LSO",
-      "label": "Lesotho",
-      "aliases": ["Lesotho"]
-    },
-    {
-      "value": "LBN",
-      "label": "Libanon",
-      "aliases": ["Lebanon", "Lubnān"]
-    },
-    {
-      "value": "LBR",
-      "label": "Liberia",
-      "aliases": ["Liberia"]
-    },
-    {
-      "value": "LBY",
-      "label": "Libya",
-      "aliases": ["Libya"]
-    },
-    {
-      "value": "LIE",
-      "label": "Liechtenstein",
-      "aliases": ["Liechtenstein"]
-    },
-    {
-      "value": "LTU",
-      "label": "Litauen",
-      "aliases": ["Lithuania", "Lietuva"]
-    },
-    {
-      "value": "LUX",
-      "label": "Luxembourg",
-      "aliases": ["Luxembourg", "Lëtzebuerg"]
-    },
-    {
-      "value": "MDG",
-      "label": "Madagaskar",
-      "aliases": ["Madagascar"]
-    },
-    {
-      "value": "MWI",
-      "label": "Malawi",
-      "aliases": ["Malawi"]
-    },
-    {
-      "value": "MYS",
-      "label": "Malaysia",
-      "aliases": ["Malaysia"]
-    },
-    {
-      "value": "MDV",
-      "label": "Maldivene",
-      "aliases": ["Maldives"]
-    },
-    {
-      "value": "MLI",
-      "label": "Mali",
-      "aliases": ["Mali"]
-    },
-    {
-      "value": "MLT",
-      "label": "Malta",
-      "aliases": ["Malta"]
-    },
-    {
-      "value": "MAR",
-      "label": "Marokko",
-      "aliases": ["Morocco", "Al-Maghrib"]
-    },
-    {
-      "value": "MHL",
-      "label": "Marshalløyene",
-      "aliases": ["Marshall Islands"]
-    },
-    {
-      "value": "MRT",
-      "label": "Mauritania",
-      "aliases": ["Mauritania"]
-    },
-    {
-      "value": "MUS",
-      "label": "Mauritius",
-      "aliases": ["Mauritius"]
-    },
-    {
-      "value": "MEX",
-      "label": "Mexico",
-      "aliases": ["Mexico", "México"]
-    },
-    {
-      "value": "FSM",
-      "label": "Mikronesia",
-      "aliases": ["Micronesia"]
-    },
-    {
-      "value": "MDA",
-      "label": "Moldova",
-      "aliases": ["Moldova"]
-    },
-    {
-      "value": "MCO",
-      "label": "Monaco",
-      "aliases": ["Monaco"]
-    },
-    {
-      "value": "MNG",
-      "label": "Mongolia",
-      "aliases": ["Mongolia"]
-    },
-    {
-      "value": "MNE",
-      "label": "Montenegro",
-      "aliases": ["Montenegro"]
-    },
-    {
-      "value": "MOZ",
-      "label": "Mosambik",
-      "aliases": ["Mozambique"]
-    },
-    {
-      "value": "MMR",
-      "label": "Myanmar",
-      "aliases": ["Myanmar", "Burma"]
-    },
-    {
-      "value": "NAM",
-      "label": "Namibia",
-      "aliases": ["Namibia"]
-    },
-    {
-      "value": "NRU",
-      "label": "Nauru",
-      "aliases": ["Nauru"]
-    },
-    {
-      "value": "NLD",
-      "label": "Nederland",
-      "aliases": ["Netherlands", "Holland"]
-    },
-    {
-      "value": "NPL",
-      "label": "Nepal",
-      "aliases": ["Nepal"]
-    },
-    {
-      "value": "NZL",
-      "label": "New Zealand",
-      "aliases": ["New Zealand", "Aotearoa"]
-    },
-    {
-      "value": "NIC",
-      "label": "Nicaragua",
-      "aliases": ["Nicaragua"]
-    },
-    {
-      "value": "NER",
-      "label": "Niger",
-      "aliases": ["Niger"]
-    },
-    {
-      "value": "NGA",
-      "label": "Nigeria",
-      "aliases": ["Nigeria"]
-    },
-    {
-      "value": "PRK",
-      "label": "Nord-Korea",
-      "aliases": ["North Korea", "DPRK"]
-    },
-    {
-      "value": "MKD",
-      "label": "Nord-Makedonia",
-      "aliases": ["North Macedonia"]
-    },
-    {
-      "value": "NOR",
-      "label": "Norge",
-      "aliases": ["Norway", "Noreg"]
-    },
-    {
-      "value": "OMN",
-      "label": "Oman",
-      "aliases": ["Oman"]
-    },
-    {
-      "value": "PAK",
-      "label": "Pakistan",
-      "aliases": ["Pakistan"]
-    },
-    {
-      "value": "PLW",
-      "label": "Palau",
-      "aliases": ["Palau"]
-    },
-    {
-      "value": "PAN",
-      "label": "Panama",
-      "aliases": ["Panama"]
-    },
-    {
-      "value": "PNG",
-      "label": "Papua Ny-Guinea",
-      "aliases": ["Papua New Guinea"]
-    },
-    {
-      "value": "PRY",
-      "label": "Paraguay",
-      "aliases": ["Paraguay"]
-    },
-    {
-      "value": "PER",
-      "label": "Peru",
-      "aliases": ["Peru"]
-    },
-    {
-      "value": "POL",
-      "label": "Polen",
-      "aliases": ["Poland", "Polska"]
-    },
-    {
-      "value": "PRT",
-      "label": "Portugal",
-      "aliases": ["Portugal"]
-    },
-    {
-      "value": "QAT",
-      "label": "Qatar",
-      "aliases": ["Qatar"]
-    },
-    {
-      "value": "ROU",
-      "label": "Romania",
-      "aliases": ["Romania"]
-    },
-    {
-      "value": "RUS",
-      "label": "Russland",
-      "aliases": ["Russia", "Rossiya"]
-    },
-    {
-      "value": "RWA",
-      "label": "Rwanda",
-      "aliases": ["Rwanda"]
-    },
-    {
-      "value": "KNA",
-      "label": "Saint Kitts og Nevis",
-      "aliases": ["Saint Kitts and Nevis"]
-    },
-    {
-      "value": "LCA",
-      "label": "Saint Lucia",
-      "aliases": ["Saint Lucia"]
-    },
-    {
-      "value": "VCT",
-      "label": "Saint Vincent og Grenadinene",
-      "aliases": ["Saint Vincent and the Grenadines"]
-    },
-    {
-      "value": "SLB",
-      "label": "Salomonøyene",
-      "aliases": ["Solomon Islands"]
-    },
-    {
-      "value": "WSM",
-      "label": "Samoa",
-      "aliases": ["Samoa"]
-    },
-    {
-      "value": "SMR",
-      "label": "San Marino",
-      "aliases": ["San Marino"]
-    },
-    {
-      "value": "SAU",
-      "label": "Saudi-Arabia",
-      "aliases": ["Saudi Arabia"]
-    },
-    {
-      "value": "SEN",
-      "label": "Senegal",
-      "aliases": ["Senegal"]
-    },
-    {
-      "value": "SRB",
-      "label": "Serbia",
-      "aliases": ["Serbia", "Srbija"]
-    },
-    {
-      "value": "SYC",
-      "label": "Seychellene",
-      "aliases": ["Seychelles"]
-    },
-    {
-      "value": "SLE",
-      "label": "Sierra Leone",
-      "aliases": ["Sierra Leone"]
-    },
-    {
-      "value": "SGP",
-      "label": "Singapore",
-      "aliases": ["Singapore"]
-    },
-    {
-      "value": "SVK",
-      "label": "Slovakia",
-      "aliases": ["Slovakia", "Slovensko"]
-    },
-    {
-      "value": "SVN",
-      "label": "Slovenia",
-      "aliases": ["Slovenia", "Slovenija"]
-    },
-    {
-      "value": "SOM",
-      "label": "Somalia",
-      "aliases": ["Somalia"]
-    },
-    {
-      "value": "ESP",
-      "label": "Spania",
-      "aliases": ["Spain", "España"]
-    },
-    {
-      "value": "LKA",
-      "label": "Sri Lanka",
-      "aliases": ["Sri Lanka"]
-    },
-    {
-      "value": "GBR",
-      "label": "Storbritannia",
-      "aliases": ["United Kingdom", "UK"]
-    },
-    {
-      "value": "SDN",
-      "label": "Sudan",
-      "aliases": ["Sudan"]
-    },
-    {
-      "value": "SUR",
-      "label": "Surinam",
-      "aliases": ["Suriname"]
-    },
-    {
-      "value": "CHE",
-      "label": "Sveits",
-      "aliases": ["Switzerland", "Schweiz", "Suisse"]
-    },
-    {
-      "value": "SWE",
-      "label": "Sverige",
-      "aliases": ["Sweden"]
-    },
-    {
-      "value": "SYR",
-      "label": "Syria",
-      "aliases": ["Syria"]
-    },
-    {
-      "value": "STP",
-      "label": "São Tomé og Príncipe",
-      "aliases": ["São Tomé and Príncipe"]
-    },
-    {
-      "value": "ZAF",
-      "label": "Sør-Afrika",
-      "aliases": ["South Africa"]
-    },
-    {
-      "value": "KOR",
-      "label": "Sør-Korea",
-      "aliases": ["South Korea", "ROK"]
-    },
-    {
-      "value": "SSD",
-      "label": "Sør-Sudan",
-      "aliases": ["South Sudan"]
-    },
-    {
-      "value": "TJK",
-      "label": "Tadsjikistan",
-      "aliases": ["Tajikistan"]
-    },
-    {
-      "value": "TWN",
-      "label": "Taiwan",
-      "aliases": ["Taiwan"]
-    },
-    {
-      "value": "TZA",
-      "label": "Tanzania",
-      "aliases": ["Tanzania"]
-    },
-    {
-      "value": "THA",
-      "label": "Thailand",
-      "aliases": ["Thailand"]
-    },
-    {
-      "value": "TGO",
-      "label": "Togo",
-      "aliases": ["Togo"]
-    },
-    {
-      "value": "TON",
-      "label": "Tonga",
-      "aliases": ["Tonga"]
-    },
-    {
-      "value": "TTO",
-      "label": "Trinidad og Tobago",
-      "aliases": ["Trinidad and Tobago"]
-    },
-    {
-      "value": "TCD",
-      "label": "Tsjad",
-      "aliases": ["Chad", "Tchad"]
-    },
-    {
-      "value": "CZE",
-      "label": "Tsjekkia",
-      "aliases": ["Czech Republic", "Česko"]
-    },
-    {
-      "value": "TUN",
-      "label": "Tunisia",
-      "aliases": ["Tunisia"]
-    },
-    {
-      "value": "TKM",
-      "label": "Turkmenistan",
-      "aliases": ["Turkmenistan"]
-    },
-    {
-      "value": "TUR",
-      "label": "Tyrkia",
-      "aliases": ["Turkey", "Türkiye"]
-    },
-    {
-      "value": "DEU",
-      "label": "Tyskland",
-      "aliases": ["Germany", "Deutschland"]
-    },
-    {
-      "value": "UGA",
-      "label": "Uganda",
-      "aliases": ["Uganda"]
-    },
-    {
-      "value": "UKR",
-      "label": "Ukraina",
-      "aliases": ["Ukraine", "Ukraїna"]
-    },
-    {
-      "value": "HUN",
-      "label": "Ungarn",
-      "aliases": ["Hungary", "Magyarország"]
-    },
-    {
-      "value": "USA",
-      "label": "United States of America",
-      "aliases": ["USA", "America"]
-    },
-    {
-      "value": "URY",
-      "label": "Uruguay",
-      "aliases": ["Uruguay"]
-    },
-    {
-      "value": "UZB",
-      "label": "Usbekistan",
-      "aliases": ["Uzbekistan", "O‘zbekiston"]
-    },
-    {
-      "value": "VUT",
-      "label": "Vanuatu",
-      "aliases": ["Vanuatu"]
-    },
-    {
-      "value": "VAT",
-      "label": "Vatikanstaten",
-      "aliases": ["Vatican City"]
-    },
-    {
-      "value": "VEN",
-      "label": "Venezuela",
-      "aliases": ["Venezuela"]
-    },
-    {
-      "value": "VNM",
-      "label": "Vietnam",
-      "aliases": ["Vietnam", "Việt Nam"]
-    },
-    {
-      "value": "ZMB",
-      "label": "Zambia",
-      "aliases": ["Zambia"]
-    },
-    {
-      "value": "ZWE",
-      "label": "Zimbabwe",
-      "aliases": ["Zimbabwe"]
-    },
-    {
-      "value": "TLS",
-      "label": "Øst-Timor",
-      "aliases": ["Timor-Leste"]
-    },
-    {
-      "value": "AUT",
-      "label": "Østerrike",
-      "aliases": ["Austria", "Österreich"]
-    }
-  ]
-}
+[
+  {
+    "value": "AFG",
+    "label": "Afghanistan",
+    "aliases": ["Afghanistan"]
+  },
+  {
+    "value": "ALB",
+    "label": "Albania",
+    "aliases": ["Albania", "Shqipëri"]
+  },
+  {
+    "value": "DZA",
+    "label": "Algerie",
+    "aliases": ["Algeria", "Al-Jaza’ir"]
+  },
+  {
+    "value": "AND",
+    "label": "Andorra",
+    "aliases": ["Andorra"]
+  },
+  {
+    "value": "AGO",
+    "label": "Angola",
+    "aliases": ["Angola"]
+  },
+  {
+    "value": "ATG",
+    "label": "Antigua og Barbuda",
+    "aliases": ["Antigua and Barbuda"]
+  },
+  {
+    "value": "ARG",
+    "label": "Argentina",
+    "aliases": ["Argentina"]
+  },
+  {
+    "value": "ARM",
+    "label": "Armenia",
+    "aliases": ["Armenia", "Hayastan"]
+  },
+  {
+    "value": "AZE",
+    "label": "Aserbajdsjan",
+    "aliases": ["Azerbaijan", "Azərbaycan"]
+  },
+  {
+    "value": "AUS",
+    "label": "Australia",
+    "aliases": ["Australia"]
+  },
+  {
+    "value": "BHS",
+    "label": "Bahamas",
+    "aliases": ["Bahamas", "The Bahamas"]
+  },
+  {
+    "value": "BHR",
+    "label": "Bahrain",
+    "aliases": ["Bahrain"]
+  },
+  {
+    "value": "BGD",
+    "label": "Bangladesh",
+    "aliases": ["Bangladesh"]
+  },
+  {
+    "value": "BRB",
+    "label": "Barbados",
+    "aliases": ["Barbados"]
+  },
+  {
+    "value": "BEL",
+    "label": "Belgia",
+    "aliases": ["Belgium", "België", "Belgique"]
+  },
+  {
+    "value": "BLZ",
+    "label": "Belize",
+    "aliases": ["Belize"]
+  },
+  {
+    "value": "BEN",
+    "label": "Benin",
+    "aliases": ["Benin"]
+  },
+  {
+    "value": "BTN",
+    "label": "Bhutan",
+    "aliases": ["Bhutan"]
+  },
+  {
+    "value": "BOL",
+    "label": "Bolivia",
+    "aliases": ["Bolivia"]
+  },
+  {
+    "value": "BIH",
+    "label": "Bosnia-Hercegovina",
+    "aliases": ["Bosnia and Herzegovina", "Bosna i Hercegovina"]
+  },
+  {
+    "value": "BWA",
+    "label": "Botswana",
+    "aliases": ["Botswana"]
+  },
+  {
+    "value": "BRA",
+    "label": "Brasil",
+    "aliases": ["Brazil", "Brasil"]
+  },
+  {
+    "value": "BRN",
+    "label": "Brunei",
+    "aliases": ["Brunei"]
+  },
+  {
+    "value": "BGR",
+    "label": "Bulgaria",
+    "aliases": ["Bulgaria", "Bălgarija"]
+  },
+  {
+    "value": "BFA",
+    "label": "Burkina Faso",
+    "aliases": ["Burkina Faso"]
+  },
+  {
+    "value": "BDI",
+    "label": "Burundi",
+    "aliases": ["Burundi"]
+  },
+  {
+    "value": "CAN",
+    "label": "Canada",
+    "aliases": ["Canada"]
+  },
+  {
+    "value": "CHL",
+    "label": "Chile",
+    "aliases": ["Chile"]
+  },
+  {
+    "value": "COL",
+    "label": "Colombia",
+    "aliases": ["Colombia"]
+  },
+  {
+    "value": "CRI",
+    "label": "Costa Rica",
+    "aliases": ["Costa Rica"]
+  },
+  {
+    "value": "CUB",
+    "label": "Cuba",
+    "aliases": ["Cuba"]
+  },
+  {
+    "value": "DNK",
+    "label": "Danmark",
+    "aliases": ["Denmark"]
+  },
+  {
+    "value": "ARE",
+    "label": "De forente arabiske emirater",
+    "aliases": ["United Arab Emirates", "UAE"]
+  },
+  {
+    "value": "DOM",
+    "label": "Den dominikanske republikk",
+    "aliases": ["Dominican Republic"]
+  },
+  {
+    "value": "CAF",
+    "label": "Den sentralafrikanske republikk",
+    "aliases": ["Central African Republic"]
+  },
+  {
+    "value": "DJI",
+    "label": "Djibouti",
+    "aliases": ["Djibouti"]
+  },
+  {
+    "value": "DMA",
+    "label": "Dominica",
+    "aliases": ["Dominica"]
+  },
+  {
+    "value": "ECU",
+    "label": "Ecuador",
+    "aliases": ["Ecuador"]
+  },
+  {
+    "value": "EGY",
+    "label": "Egypt",
+    "aliases": ["Egypt", "Misr"]
+  },
+  {
+    "value": "GNQ",
+    "label": "Ekvatorial-Guinea",
+    "aliases": ["Equatorial Guinea"]
+  },
+  {
+    "value": "SLV",
+    "label": "El Salvador",
+    "aliases": ["El Salvador"]
+  },
+  {
+    "value": "CIV",
+    "label": "Elfenbenskysten",
+    "aliases": ["Ivory Coast", "Côte d’Ivoire"]
+  },
+  {
+    "value": "ERI",
+    "label": "Eritrea",
+    "aliases": ["Eritrea"]
+  },
+  {
+    "value": "EST",
+    "label": "Estland",
+    "aliases": ["Estonia", "Eesti"]
+  },
+  {
+    "value": "SWZ",
+    "label": "Eswatini",
+    "aliases": ["Swaziland"]
+  },
+  {
+    "value": "ETH",
+    "label": "Etiopia",
+    "aliases": ["Ethiopia"]
+  },
+  {
+    "value": "FJI",
+    "label": "Fiji",
+    "aliases": ["Fiji"]
+  },
+  {
+    "value": "PHL",
+    "label": "Filippinene",
+    "aliases": ["Philippines", "Pilipinas"]
+  },
+  {
+    "value": "FIN",
+    "label": "Finland",
+    "aliases": ["Suomi"]
+  },
+  {
+    "value": "FRA",
+    "label": "Frankrike",
+    "aliases": ["France"]
+  },
+  {
+    "value": "GAB",
+    "label": "Gabon",
+    "aliases": ["Gabon"]
+  },
+  {
+    "value": "GMB",
+    "label": "Gambia",
+    "aliases": ["The Gambia"]
+  },
+  {
+    "value": "GEO",
+    "label": "Georgia",
+    "aliases": ["Georgia", "Sakartvelo"]
+  },
+  {
+    "value": "GHA",
+    "label": "Ghana",
+    "aliases": ["Ghana"]
+  },
+  {
+    "value": "GRD",
+    "label": "Grenada",
+    "aliases": ["Grenada"]
+  },
+  {
+    "value": "GTM",
+    "label": "Guatemala",
+    "aliases": ["Guatemala"]
+  },
+  {
+    "value": "GIN",
+    "label": "Guinea",
+    "aliases": ["Guinea"]
+  },
+  {
+    "value": "GNB",
+    "label": "Guinea-Bissau",
+    "aliases": ["Guinea-Bissau"]
+  },
+  {
+    "value": "GUY",
+    "label": "Guyana",
+    "aliases": ["Guyana"]
+  },
+  {
+    "value": "HTI",
+    "label": "Haiti",
+    "aliases": ["Haiti"]
+  },
+  {
+    "value": "GRC",
+    "label": "Hellas",
+    "aliases": ["Greece", "Elláda"]
+  },
+  {
+    "value": "HND",
+    "label": "Honduras",
+    "aliases": ["Honduras"]
+  },
+  {
+    "value": "BLR",
+    "label": "Hviterussland",
+    "aliases": ["Belarus", "Bielarus"]
+  },
+  {
+    "value": "IND",
+    "label": "India",
+    "aliases": ["India", "Bhārat"]
+  },
+  {
+    "value": "IDN",
+    "label": "Indonesia",
+    "aliases": ["Indonesia"]
+  },
+  {
+    "value": "IRQ",
+    "label": "Irak",
+    "aliases": ["Iraq"]
+  },
+  {
+    "value": "IRN",
+    "label": "Iran",
+    "aliases": ["Iran"]
+  },
+  {
+    "value": "IRL",
+    "label": "Irland",
+    "aliases": ["Ireland"]
+  },
+  {
+    "value": "ISL",
+    "label": "Island",
+    "aliases": ["Iceland", "Ísland"]
+  },
+  {
+    "value": "ISR",
+    "label": "Israel",
+    "aliases": ["Israel"]
+  },
+  {
+    "value": "ITA",
+    "label": "Italia",
+    "aliases": ["Italy", "Italia"]
+  },
+  {
+    "value": "JAM",
+    "label": "Jamaica",
+    "aliases": ["Jamaica"]
+  },
+  {
+    "value": "JPN",
+    "label": "Japan",
+    "aliases": ["Japan", "Nippon"]
+  },
+  {
+    "value": "YEM",
+    "label": "Jemen",
+    "aliases": ["Yemen"]
+  },
+  {
+    "value": "JOR",
+    "label": "Jordan",
+    "aliases": ["Jordan"]
+  },
+  {
+    "value": "KHM",
+    "label": "Kambodsja",
+    "aliases": ["Cambodia", "Kâmpŭchéa"]
+  },
+  {
+    "value": "CMR",
+    "label": "Kamerun",
+    "aliases": ["Cameroon", "Cameroun"]
+  },
+  {
+    "value": "CPV",
+    "label": "Kapp Verde",
+    "aliases": ["Cape Verde", "Cabo Verde"]
+  },
+  {
+    "value": "KAZ",
+    "label": "Kasakhstan",
+    "aliases": ["Kazakhstan", "Qazaqstan"]
+  },
+  {
+    "value": "KEN",
+    "label": "Kenya",
+    "aliases": ["Kenya"]
+  },
+  {
+    "value": "CHN",
+    "label": "Kina",
+    "aliases": ["China", "Zhōngguó"]
+  },
+  {
+    "value": "KGZ",
+    "label": "Kirgisistan",
+    "aliases": ["Kyrgyzstan", "Kyrgyz Respublikasy"]
+  },
+  {
+    "value": "KIR",
+    "label": "Kiribati",
+    "aliases": ["Kiribati"]
+  },
+  {
+    "value": "COM",
+    "label": "Komorene",
+    "aliases": ["Comoros", "Comores"]
+  },
+  {
+    "value": "COG",
+    "label": "Kongo-Brazzaville",
+    "aliases": ["Republic of the Congo"]
+  },
+  {
+    "value": "COD",
+    "label": "Kongo-Kinshasa",
+    "aliases": ["Democratic Republic of the Congo"]
+  },
+  {
+    "value": "HRV",
+    "label": "Kroatia",
+    "aliases": ["Croatia", "Hrvatska"]
+  },
+  {
+    "value": "KWT",
+    "label": "Kuwait",
+    "aliases": ["Kuwait"]
+  },
+  {
+    "value": "CYP",
+    "label": "Kypros",
+    "aliases": ["Cyprus", "Kýpros"]
+  },
+  {
+    "value": "LAO",
+    "label": "Laos",
+    "aliases": ["Laos", "Lao"]
+  },
+  {
+    "value": "LVA",
+    "label": "Latvia",
+    "aliases": ["Latvia", "Latvija"]
+  },
+  {
+    "value": "LSO",
+    "label": "Lesotho",
+    "aliases": ["Lesotho"]
+  },
+  {
+    "value": "LBN",
+    "label": "Libanon",
+    "aliases": ["Lebanon", "Lubnān"]
+  },
+  {
+    "value": "LBR",
+    "label": "Liberia",
+    "aliases": ["Liberia"]
+  },
+  {
+    "value": "LBY",
+    "label": "Libya",
+    "aliases": ["Libya"]
+  },
+  {
+    "value": "LIE",
+    "label": "Liechtenstein",
+    "aliases": ["Liechtenstein"]
+  },
+  {
+    "value": "LTU",
+    "label": "Litauen",
+    "aliases": ["Lithuania", "Lietuva"]
+  },
+  {
+    "value": "LUX",
+    "label": "Luxembourg",
+    "aliases": ["Luxembourg", "Lëtzebuerg"]
+  },
+  {
+    "value": "MDG",
+    "label": "Madagaskar",
+    "aliases": ["Madagascar"]
+  },
+  {
+    "value": "MWI",
+    "label": "Malawi",
+    "aliases": ["Malawi"]
+  },
+  {
+    "value": "MYS",
+    "label": "Malaysia",
+    "aliases": ["Malaysia"]
+  },
+  {
+    "value": "MDV",
+    "label": "Maldivene",
+    "aliases": ["Maldives"]
+  },
+  {
+    "value": "MLI",
+    "label": "Mali",
+    "aliases": ["Mali"]
+  },
+  {
+    "value": "MLT",
+    "label": "Malta",
+    "aliases": ["Malta"]
+  },
+  {
+    "value": "MAR",
+    "label": "Marokko",
+    "aliases": ["Morocco", "Al-Maghrib"]
+  },
+  {
+    "value": "MHL",
+    "label": "Marshalløyene",
+    "aliases": ["Marshall Islands"]
+  },
+  {
+    "value": "MRT",
+    "label": "Mauritania",
+    "aliases": ["Mauritania"]
+  },
+  {
+    "value": "MUS",
+    "label": "Mauritius",
+    "aliases": ["Mauritius"]
+  },
+  {
+    "value": "MEX",
+    "label": "Mexico",
+    "aliases": ["Mexico", "México"]
+  },
+  {
+    "value": "FSM",
+    "label": "Mikronesia",
+    "aliases": ["Micronesia"]
+  },
+  {
+    "value": "MDA",
+    "label": "Moldova",
+    "aliases": ["Moldova"]
+  },
+  {
+    "value": "MCO",
+    "label": "Monaco",
+    "aliases": ["Monaco"]
+  },
+  {
+    "value": "MNG",
+    "label": "Mongolia",
+    "aliases": ["Mongolia"]
+  },
+  {
+    "value": "MNE",
+    "label": "Montenegro",
+    "aliases": ["Montenegro"]
+  },
+  {
+    "value": "MOZ",
+    "label": "Mosambik",
+    "aliases": ["Mozambique"]
+  },
+  {
+    "value": "MMR",
+    "label": "Myanmar",
+    "aliases": ["Myanmar", "Burma"]
+  },
+  {
+    "value": "NAM",
+    "label": "Namibia",
+    "aliases": ["Namibia"]
+  },
+  {
+    "value": "NRU",
+    "label": "Nauru",
+    "aliases": ["Nauru"]
+  },
+  {
+    "value": "NLD",
+    "label": "Nederland",
+    "aliases": ["Netherlands", "Holland"]
+  },
+  {
+    "value": "NPL",
+    "label": "Nepal",
+    "aliases": ["Nepal"]
+  },
+  {
+    "value": "NZL",
+    "label": "New Zealand",
+    "aliases": ["New Zealand", "Aotearoa"]
+  },
+  {
+    "value": "NIC",
+    "label": "Nicaragua",
+    "aliases": ["Nicaragua"]
+  },
+  {
+    "value": "NER",
+    "label": "Niger",
+    "aliases": ["Niger"]
+  },
+  {
+    "value": "NGA",
+    "label": "Nigeria",
+    "aliases": ["Nigeria"]
+  },
+  {
+    "value": "PRK",
+    "label": "Nord-Korea",
+    "aliases": ["North Korea", "DPRK"]
+  },
+  {
+    "value": "MKD",
+    "label": "Nord-Makedonia",
+    "aliases": ["North Macedonia"]
+  },
+  {
+    "value": "NOR",
+    "label": "Norge",
+    "aliases": ["Norway", "Noreg"]
+  },
+  {
+    "value": "OMN",
+    "label": "Oman",
+    "aliases": ["Oman"]
+  },
+  {
+    "value": "PAK",
+    "label": "Pakistan",
+    "aliases": ["Pakistan"]
+  },
+  {
+    "value": "PLW",
+    "label": "Palau",
+    "aliases": ["Palau"]
+  },
+  {
+    "value": "PAN",
+    "label": "Panama",
+    "aliases": ["Panama"]
+  },
+  {
+    "value": "PNG",
+    "label": "Papua Ny-Guinea",
+    "aliases": ["Papua New Guinea"]
+  },
+  {
+    "value": "PRY",
+    "label": "Paraguay",
+    "aliases": ["Paraguay"]
+  },
+  {
+    "value": "PER",
+    "label": "Peru",
+    "aliases": ["Peru"]
+  },
+  {
+    "value": "POL",
+    "label": "Polen",
+    "aliases": ["Poland", "Polska"]
+  },
+  {
+    "value": "PRT",
+    "label": "Portugal",
+    "aliases": ["Portugal"]
+  },
+  {
+    "value": "QAT",
+    "label": "Qatar",
+    "aliases": ["Qatar"]
+  },
+  {
+    "value": "ROU",
+    "label": "Romania",
+    "aliases": ["Romania"]
+  },
+  {
+    "value": "RUS",
+    "label": "Russland",
+    "aliases": ["Russia", "Rossiya"]
+  },
+  {
+    "value": "RWA",
+    "label": "Rwanda",
+    "aliases": ["Rwanda"]
+  },
+  {
+    "value": "KNA",
+    "label": "Saint Kitts og Nevis",
+    "aliases": ["Saint Kitts and Nevis"]
+  },
+  {
+    "value": "LCA",
+    "label": "Saint Lucia",
+    "aliases": ["Saint Lucia"]
+  },
+  {
+    "value": "VCT",
+    "label": "Saint Vincent og Grenadinene",
+    "aliases": ["Saint Vincent and the Grenadines"]
+  },
+  {
+    "value": "SLB",
+    "label": "Salomonøyene",
+    "aliases": ["Solomon Islands"]
+  },
+  {
+    "value": "WSM",
+    "label": "Samoa",
+    "aliases": ["Samoa"]
+  },
+  {
+    "value": "SMR",
+    "label": "San Marino",
+    "aliases": ["San Marino"]
+  },
+  {
+    "value": "SAU",
+    "label": "Saudi-Arabia",
+    "aliases": ["Saudi Arabia"]
+  },
+  {
+    "value": "SEN",
+    "label": "Senegal",
+    "aliases": ["Senegal"]
+  },
+  {
+    "value": "SRB",
+    "label": "Serbia",
+    "aliases": ["Serbia", "Srbija"]
+  },
+  {
+    "value": "SYC",
+    "label": "Seychellene",
+    "aliases": ["Seychelles"]
+  },
+  {
+    "value": "SLE",
+    "label": "Sierra Leone",
+    "aliases": ["Sierra Leone"]
+  },
+  {
+    "value": "SGP",
+    "label": "Singapore",
+    "aliases": ["Singapore"]
+  },
+  {
+    "value": "SVK",
+    "label": "Slovakia",
+    "aliases": ["Slovakia", "Slovensko"]
+  },
+  {
+    "value": "SVN",
+    "label": "Slovenia",
+    "aliases": ["Slovenia", "Slovenija"]
+  },
+  {
+    "value": "SOM",
+    "label": "Somalia",
+    "aliases": ["Somalia"]
+  },
+  {
+    "value": "ESP",
+    "label": "Spania",
+    "aliases": ["Spain", "España"]
+  },
+  {
+    "value": "LKA",
+    "label": "Sri Lanka",
+    "aliases": ["Sri Lanka"]
+  },
+  {
+    "value": "GBR",
+    "label": "Storbritannia",
+    "aliases": ["United Kingdom", "UK"]
+  },
+  {
+    "value": "SDN",
+    "label": "Sudan",
+    "aliases": ["Sudan"]
+  },
+  {
+    "value": "SUR",
+    "label": "Surinam",
+    "aliases": ["Suriname"]
+  },
+  {
+    "value": "CHE",
+    "label": "Sveits",
+    "aliases": ["Switzerland", "Schweiz", "Suisse"]
+  },
+  {
+    "value": "SWE",
+    "label": "Sverige",
+    "aliases": ["Sweden"]
+  },
+  {
+    "value": "SYR",
+    "label": "Syria",
+    "aliases": ["Syria"]
+  },
+  {
+    "value": "STP",
+    "label": "São Tomé og Príncipe",
+    "aliases": ["São Tomé and Príncipe"]
+  },
+  {
+    "value": "ZAF",
+    "label": "Sør-Afrika",
+    "aliases": ["South Africa"]
+  },
+  {
+    "value": "KOR",
+    "label": "Sør-Korea",
+    "aliases": ["South Korea", "ROK"]
+  },
+  {
+    "value": "SSD",
+    "label": "Sør-Sudan",
+    "aliases": ["South Sudan"]
+  },
+  {
+    "value": "TJK",
+    "label": "Tadsjikistan",
+    "aliases": ["Tajikistan"]
+  },
+  {
+    "value": "TWN",
+    "label": "Taiwan",
+    "aliases": ["Taiwan"]
+  },
+  {
+    "value": "TZA",
+    "label": "Tanzania",
+    "aliases": ["Tanzania"]
+  },
+  {
+    "value": "THA",
+    "label": "Thailand",
+    "aliases": ["Thailand"]
+  },
+  {
+    "value": "TGO",
+    "label": "Togo",
+    "aliases": ["Togo"]
+  },
+  {
+    "value": "TON",
+    "label": "Tonga",
+    "aliases": ["Tonga"]
+  },
+  {
+    "value": "TTO",
+    "label": "Trinidad og Tobago",
+    "aliases": ["Trinidad and Tobago"]
+  },
+  {
+    "value": "TCD",
+    "label": "Tsjad",
+    "aliases": ["Chad", "Tchad"]
+  },
+  {
+    "value": "CZE",
+    "label": "Tsjekkia",
+    "aliases": ["Czech Republic", "Česko"]
+  },
+  {
+    "value": "TUN",
+    "label": "Tunisia",
+    "aliases": ["Tunisia"]
+  },
+  {
+    "value": "TKM",
+    "label": "Turkmenistan",
+    "aliases": ["Turkmenistan"]
+  },
+  {
+    "value": "TUR",
+    "label": "Tyrkia",
+    "aliases": ["Turkey", "Türkiye"]
+  },
+  {
+    "value": "DEU",
+    "label": "Tyskland",
+    "aliases": ["Germany", "Deutschland"]
+  },
+  {
+    "value": "UGA",
+    "label": "Uganda",
+    "aliases": ["Uganda"]
+  },
+  {
+    "value": "UKR",
+    "label": "Ukraina",
+    "aliases": ["Ukraine", "Ukraїna"]
+  },
+  {
+    "value": "HUN",
+    "label": "Ungarn",
+    "aliases": ["Hungary", "Magyarország"]
+  },
+  {
+    "value": "USA",
+    "label": "United States of America",
+    "aliases": ["USA", "America"]
+  },
+  {
+    "value": "URY",
+    "label": "Uruguay",
+    "aliases": ["Uruguay"]
+  },
+  {
+    "value": "UZB",
+    "label": "Usbekistan",
+    "aliases": ["Uzbekistan", "O‘zbekiston"]
+  },
+  {
+    "value": "VUT",
+    "label": "Vanuatu",
+    "aliases": ["Vanuatu"]
+  },
+  {
+    "value": "VAT",
+    "label": "Vatikanstaten",
+    "aliases": ["Vatican City"]
+  },
+  {
+    "value": "VEN",
+    "label": "Venezuela",
+    "aliases": ["Venezuela"]
+  },
+  {
+    "value": "VNM",
+    "label": "Vietnam",
+    "aliases": ["Vietnam", "Việt Nam"]
+  },
+  {
+    "value": "ZMB",
+    "label": "Zambia",
+    "aliases": ["Zambia"]
+  },
+  {
+    "value": "ZWE",
+    "label": "Zimbabwe",
+    "aliases": ["Zimbabwe"]
+  },
+  {
+    "value": "TLS",
+    "label": "Øst-Timor",
+    "aliases": ["Timor-Leste"]
+  },
+  {
+    "value": "AUT",
+    "label": "Østerrike",
+    "aliases": ["Austria", "Österreich"]
+  }
+]
