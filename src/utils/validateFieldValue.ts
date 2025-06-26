@@ -7,7 +7,7 @@ import type { FieldData, SelectOption } from "@/types";
  * @param value - The value to validate, can be string, number, boolean, SelectOption, or null/undefined.
  * @returns An error message string if validation fails, or null if valid.
  */
-export function validateFieldValue(field: FieldData, value: string | number | boolean | SelectOption | null | undefined): string | null {
+export function validateFieldValue(field: FieldData, value: string | number | boolean | string[] | SelectOption | null | undefined): string | null {
   const cond = field.validationConditions;
 
   // Handle required and empty and reverse conditions
