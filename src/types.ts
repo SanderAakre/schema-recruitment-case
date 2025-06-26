@@ -7,11 +7,11 @@ export interface SchemaData {
   title: string | TextData; // Title of the schema, will be displayed in the UI
   subText?: string | TextData; // Optional description that shows below the title
   pages: PageData[]; // Array of pages, each containing fields and optional field groups
-  globalPageButtonSettings?: {
-    nextPageButton?: ButtonData; // Optional settings for the next page button, will be used as default for all pages
-    previousPageButton?: ButtonData; // Optional settings for the previous page button, will be used as default for all pages
-  };
-  submitSettings?: SubmitData;
+  nextPageButton?: ButtonData; // Optional settings for the next page button, will be used as default for all pages
+  previousPageButton?: ButtonData; // Optional settings for the previous page button, will be used as default for all pages
+  submitButton?: ButtonData; // Optional settings for the submit button, will be used as default for all pages
+  successMessage?: string; // Default to "Form submitted successfully"
+  errorMessage?: string; // Default to "An unspecified error occurred while submitting the form"
   tailwindClasses?: string; // Optional Tailwind CSS classes to apply to the schema container
 }
 
@@ -23,29 +23,34 @@ export interface PageData {
   fieldGroups?: GroupData[]; // Optional array of field groups, which can be used to group fields together
   fields: FieldData[]; // Array of fields that will be displayed on the page
   pageButton?: ButtonData; // Optional settings for the next page button, will override the global page button on this page if set
+  gapSize?: "tight" | "half" | "normal" | "wide"; // Controls the gap size between fields in the group (default: "normal")
   tailwindClasses?: string; // Optional Tailwind CSS classes to apply to the page container
 }
 
 // Contains data for field groups, which can be used to organize fields into logical sections, and can be collapsible.
 export interface GroupData {
   name: string; // Name of the field group, should be unique!
-  title?: string | TextData; // Label that is displayed for the group, defaults to the group name
-  subText?: TextData; // Optional subtext that shows below the group label
+  title?: string | TextData; // Title displayed at the top of the group, only thing visible if a group is collapsed
+  subText?: string | TextData; // Optional subtext that shows below the group label
   collapsable?: boolean; // Default to false, if true, the group can be collapsed
   startCollapsed?: boolean; // Default to false, if true, the group starts collapsed (only relevant if collapsable is true, obviously)
+  gapSize?: "tight" | "half" | "normal" | "wide"; // Controls the gap size between fields in the group (default: "tight")
   tailwindClasses?: string; // Optional Tailwind CSS classes to apply to the group container
 }
 
 // Contains the data for each individual field in the form.
 export interface FieldData {
   name: string; // Name of the field, should be unique!
-  type?: "text" | "comment" | "number" | "boolean" | "select" | "multiSelect"; // Default to "text"
-  selectType?: "dropdown" | "autofill" | "radio"; // Type of select field, default to "dropdown"
+  type?: "text" | "comment" | "number" | "checkbox" | "multiCheckbox" | "select" | "radio" | "autofill"; // Default to "text"
   options?: SelectOption[] | string[]; // Array of options for select fields, either as SelectOption objects or simple strings
   optionsUrl?: string; // Optional URL to fetch options from instead of using the options array
-  label?: string; // Label that is displayed. Will default to the field name
+  title?: string | TextData; // Optional title for the field, will be displayed above the field
+  subText?: string | TextData; // Optional subtext that shows below the title
+  label?: string; // Label for the field, (defaults to the field name if not provided)
+  required?: boolean; // Default to false
+  requiredErrorText?: string; // Default to "This field is required"
+  noLabel?: boolean; // Whether to hide the label, (default: false)
   groupName?: string; // If set, the field will be grouped with other fields with the same group name
-  helpText?: string; // Optional help tooltip text that shows when hovering a "?" icon next to the field label
   description?: string; // Optional description that shows below the field
   placeholder?: string; // Placeholder text for the field
   defaultValue?: string | number | boolean; // Default value for the field, if applicable
@@ -77,6 +82,7 @@ export interface TextData {
   text?: string; // Text that will be displayed in the description
   type?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "body1" | "body2" | "caption"; // Default to "body1"
   spans?: SpanData[]; // Optional array of spans, will be used instead of text if provided
+  helpText?: string; // Optional help text that will be displayed when hovering a "?" icon next to the text
   tailwindClasses?: string; // Optional Tailwind CSS classes to apply to the text container
 }
 
@@ -101,19 +107,20 @@ export interface ConfirmationData {
 
 // ***  Conditions, Confirmation & Dependency Data ***
 
+// Contains the data for a field dependency, which is used to show/hide fields based on the value of another field
+// This is used to create dynamic forms where fields can be shown or hidden based on user input
 export interface Dependency {
   name: string; // Name of the field that this field depends on
   reverse?: boolean; // Default to false, if true, the field will be shown if the condition is not met
-  condition: "equals" | "notEquals" | "greaterThan" | "lessThan" | "contains"; // Condition that must be met for the field to be shown
-  value: string | number | boolean; // Value that the dependency field must have for this field to be shown
+  condition?: "required" | "equals" | "notEquals" | "greaterThan" | "lessThan" | "contains"; // Type of condition to check (default to "required")
+  value?: string | number | boolean; // Value that the dependency field must have for this field to be shown
   ifFalse?: "hidden" | "disabled"; // Default to "hidden", if "disabled", the field will be shown but not editable
   dependencyFalseText?: string; // Optional text that will be shown if the dependency condition is not met
 }
 
 export interface FieldConditions {
   reverse?: boolean; // Default to false, if true, the conditions will be reversed
-  required?: boolean; // Default to false
-  requiredErrorText?: string; // Default to "This field is required"
+
   minValue?: number; // Minimum number for number fields, or minimum length for text fields
   minValueErrorText?: string; // Default to "Minimum value is {minValue}" | "Minimum length is {minValue}"
   maxValue?: number; // Maximum number for number fields, or maximum length for text fields
@@ -124,13 +131,4 @@ export interface FieldConditions {
   forbiddenCharactersErrorText?: string; // Default to "This value contains forbidden characters"
   regex?: RegExp; // Regular expression that the field value must match
   regexErrorText?: string; // Default to "This value does not match the required format"
-}
-
-// Contains the data for the submit button on the last page
-export interface SubmitData {
-  submitText?: string; // Default to "Submit"
-  successMessage?: string; // Default to "Form submitted successfully"
-  errorMessage?: string; // Default to "An unspecified error occurred while submitting the form"
-  confirmation?: ConfirmationData; // Confirmation dialog. Will use deafault values if not provided
-  tailwindClasses?: string; // Optional Tailwind CSS classes to apply to the submit button
 }

@@ -1,5 +1,6 @@
 // MUI components
 import { Typography, Tooltip, Link, Box } from "@mui/material";
+import HelpOutlineIcon from "@mui/icons-material/HelpOutline";
 
 // Types/interfaces
 import type { TextData } from "@/types";
@@ -14,13 +15,13 @@ interface TextCompProps {
  * It supports different typography variants and can apply Tailwind CSS classes.
  *
  * @param {string | TextData} data - The text data to render. It can be a string or an object containing text, spans, and other properties.
- * @param {string} [defaultType="body1"] - The default typography variant to use if the type is not specified in the data. It can be one of "body1",
+ * @param {string} defaultType - The default typography variant to use if the type is not specified in the data. It can be one of "body1",
  * @returns {JSX.Element} The rendered text component.
  */
 export const TextComp = ({ data, defaultType = "body1" }: TextCompProps) => {
   const obj: TextData = typeof data === "string" ? { text: data } : data ?? {};
 
-  const { text, spans, type = defaultType, tailwindClasses } = obj;
+  const { text, spans, helpText, type = defaultType, tailwindClasses } = obj;
 
   return (
     <Box className={tailwindClasses}>
@@ -53,6 +54,19 @@ export const TextComp = ({ data, defaultType = "body1" }: TextCompProps) => {
               )
             )
           : text ?? ""}
+        {helpText && (
+          <Tooltip title={helpText}>
+            <HelpOutlineIcon
+              sx={{
+                ml: 1,
+                verticalAlign: "top",
+                cursor: "pointer",
+                fontSize: "inherit",
+                color: "text.secondary",
+              }}
+            />
+          </Tooltip>
+        )}
       </Typography>
     </Box>
   );
@@ -66,8 +80,7 @@ interface Props {
   data: string | TextData;
 }
 
-/** TitleComp is a specialized component that renders text as a title (h2).
- * It uses the TextComp component to handle the rendering.
+/** TitleComp renders the TextComp component with h1.
  * @param {string | TextData} data - The text data to render as a title. It can be a string or an object containing text, spans, and other properties.
  * @returns {JSX.Element} The rendered title component.
  */
@@ -75,8 +88,7 @@ export const TitleComp = ({ data }: Props) => {
   return <TextComp data={data} defaultType="h1" />;
 };
 
-/** PageTitleComp is a specialized component that renders text as a subtitle (h4).
- * It uses the TextComp component to handle the rendering.
+/** PageTitleComp renders the TextComp component with h2.
  * @param {string | TextData} data - The text data to render as a subtitle. It can be a string or an object containing text, spans, and other properties.
  * @returns {JSX.Element} The rendered subtitle component.
  */
@@ -84,11 +96,26 @@ export const PageTitleComp = ({ data }: Props) => {
   return <TextComp data={data} defaultType="h2" />;
 };
 
-/** GroupTitleComp is a specialized component that renders text as a group title (h3).
- * It uses the TextComp component to handle the rendering.
+/** GroupTitleComp renders the TextComp component with h3.
  * @param {string | TextData} data - The text data to render as a group title. It can be a string or an object containing text, spans, and other properties.
  * @returns {JSX.Element} The rendered group title component.
  */
 export const GroupTitleComp = ({ data }: Props) => {
   return <TextComp data={data} defaultType="h3" />;
+};
+
+/** FieldTitleComp renders the TextComp component with h4.
+ * @param {string | TextData} data - The text data to render as a field title. It can be a string or an object containing text, spans, and other properties.
+ * @returns {JSX.Element} The rendered field title component.
+ */
+export const FieldTitleComp = ({ data }: Props) => {
+  return <TextComp data={data} defaultType="h4" />;
+};
+
+/** SubTextComp renders the TextComp component with body2.
+ * @param {string | TextData} data - The text data to render as subtext. It can be a string or an object containing text, spans, and other properties.
+ * @returns {JSX.Element} The rendered subtext component.
+ */
+export const SubTextComp = ({ data }: Props) => {
+  return <TextComp data={data} defaultType="body2" />;
 };

@@ -17,6 +17,9 @@ const SchemaPage = ({ page }: Props) => {
   const fields = page.fields;
   const groups = page.fieldGroups ?? [];
 
+  // Set gap size based on data, defaulting to "normal" if not specified
+  const gapSize = page.gapSize === "tight" ? 0 : page.gapSize === "half" ? 2 : page.gapSize === "normal" ? 4 : page.gapSize === "wide" ? 6 : 4;
+
   // Order the fields into groups if they exist
   const schemaContent: (FieldData | { group: GroupData; fields: FieldData[] })[] = [];
   fields.forEach((field) => {
@@ -40,16 +43,16 @@ const SchemaPage = ({ page }: Props) => {
   return (
     <Box className={page.tailwindClasses}>
       {page.title && (
-        <Box mb={2}>
+        <Box mb={1}>
           <PageTitleComp data={page.title} />
         </Box>
       )}
       {page.subText && (
-        <Box mb={2}>
+        <Box mb={1}>
           <TextComp data={page.subText} />
         </Box>
       )}
-      <Box gap={4} display="flex" flexDirection="column" id={`Page ${page.name || "unnamed"} root`}>
+      <Box pt={3} gap={gapSize} display="flex" flexDirection="column" id={`Page ${page.name || "unnamed"} root`}>
         {schemaContent.map((item, index) => {
           if (typeof item === "object" && "group" in item) {
             // Render a field group with its fields as children
