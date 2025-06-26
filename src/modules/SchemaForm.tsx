@@ -16,6 +16,7 @@ interface Props {
 }
 
 const SchemaForm = ({ schema }: Props) => {
+  // Main state for the form values
   const [currentPage, setCurrentPage] = useState(0);
 
   const pages = schema.pages ?? [];

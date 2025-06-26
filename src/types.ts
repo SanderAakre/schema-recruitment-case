@@ -120,15 +120,37 @@ export interface Dependency {
 
 export interface FieldConditions {
   reverse?: boolean; // Default to false, if true, the conditions will be reversed
-
   minValue?: number; // Minimum number for number fields, or minimum length for text fields
-  minValueErrorText?: string; // Default to "Minimum value is {minValue}" | "Minimum length is {minValue}"
+  minValueErrorText?: string;
+  minLengthErrorText?: string;
   maxValue?: number; // Maximum number for number fields, or maximum length for text fields
-  maxValueErrorText?: string; // Default to "Maximum value is {maxValue}" | "Maximum length is {maxValue}"
-  forbiddenValues?: (string | number)[]; // Values that are not allowed for the field
-  forbiddenValuesErrorText?: string; // Default to "This value is not allowed"
+  maxValueErrorText?: string;
+  maxLengthErrorText?: string;
+  forbiddenValues?: (string | number)[]; // Values that are not allowed in the field
+  forbiddenValuesErrorText?: string;
   forbiddenCharacters?: string[]; // Characters that are not allowed in the field
   forbiddenCharactersErrorText?: string; // Default to "This value contains forbidden characters"
   regex?: RegExp; // Regular expression that the field value must match
   regexErrorText?: string; // Default to "This value does not match the required format"
+}
+
+// *** Field Value Data ***
+// !! This is not used in by the schema data, but is used in the form validation and submission process !!
+
+export interface FieldValue {
+  fieldName: string; // Name of the field
+  value: string; // The value is parsed to a JSON string, so it can be any type of value (string, number, boolean, etc.)
+  valid: boolean; // Optional flag to indicate if the field value is valid, will be set during validation
+  active?: boolean; // If not true, the field will be ignored in the form submission and validation process
+  errorText?: string; // Optional error text that will be shown if the field value is not valid
+}
+
+export interface PageValues {
+  pageName: string; // Name of the page
+  fields: FieldValue[]; // Array of field values for the page
+}
+
+export interface FormValues {
+  schemaName: string; // Name of the schema
+  pages: PageValues[]; // Array of page values for the schema
 }

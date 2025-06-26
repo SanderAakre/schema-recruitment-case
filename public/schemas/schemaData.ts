@@ -114,7 +114,7 @@ const schemaData: SchemaData = {
     },
     {
       name: "Side 2",
-      title: "Sidetittel 2",
+      title: "Side 2",
       subText: "Denne siden inneholder eksempler på felttyper med valgmuligheter.",
       fieldGroups: [
         {
@@ -194,6 +194,49 @@ const schemaData: SchemaData = {
             { value: "omega", label: "Omega" },
           ],
           groupName: "Gruppe 2-1",
+        },
+      ],
+    },
+    {
+      name: "Side 3",
+      title: "Side 3",
+      subText: "Denne siden inneholder eksempler på felttyper med validering og avhengigheter.",
+      fieldGroups: [
+        {
+          name: "Gruppe 3-1",
+          title: "Validering og Avhengigheter",
+          subText: "Denne gruppen inneholder felter som er avhengige av andre felter.",
+        },
+      ],
+      fields: [
+        {
+          name: "ObligatoriskTekstFelt1",
+          type: "text",
+          label: "Obligatorisk Tekstfelt",
+          placeholder: "Fyll inn noe her...",
+          required: true,
+          requiredErrorText: "Dette feltet er obligatorisk.",
+        },
+        {
+          name: "visAvhengig1",
+          type: "checkbox",
+          label: "Felt som kreves for å vise et avhengig felt",
+          description: "Merk av for å vise det avhengige feltet.",
+          required: true,
+          requiredErrorText: "Dette feltet er obligatorisk.",
+        },
+        {
+          name: "avhengigTekstFelt1",
+          type: "text",
+          label: "Avhengig Tekstfelt",
+          placeholder: "Skriv noe her...",
+          dependencies: [
+            {
+              name: "visAvhengig1",
+              condition: "equals",
+              value: true,
+            },
+          ],
         },
       ],
     },
