@@ -1,65 +1,66 @@
 import type { FieldData, SelectOption } from "@/types";
 
-export function validateFieldValue(field: FieldData, value: string | number | boolean | SelectOption): { isValid: boolean; errorText?: string } {
-  // Check if the value is empty or null
-  if (value === "" || value === null || value === undefined || value === false) {
+/**
+ * Validates a field value based on its validation conditions.
+ * Returns an error message if validation fails, or null if valid.
+ *
+ * @param field - The field data containing validation rules.
+ * @param value - The value to validate, can be string, number, boolean, SelectOption, or null/undefined.
+ * @returns An error message string if validation fails, or null if valid.
+ */
+export function validateFieldValue(field: FieldData, value: string | number | boolean | SelectOption | null | undefined): string | null {
+  console.log(`Validating field: ${field.name} with value:`, value);
+  const cond = field.validationConditions;
+
+  // Handle required and empty and reverse conditions
+  const isEmpty = value === null || value === undefined || value === "" || (typeof value === "boolean" && value === false);
+  if (isEmpty) {
     if (field.required) {
-      if (field.validationConditions?.reverse) {
-        // If the field is required but has reverse validation, do not set an error
-        return { isValid: true };
+      if (cond?.reverse) {
+        return null;
       }
-      // If the field is required and the value is empty, set an error
-      return { isValid: false, errorText: field.requiredErrorText ?? "This field is required" };
-    } else {
-      // If the field is not required and has reverse validation, set an error
-      if (field.validationConditions?.reverse) {
-        return { isValid: false, errorText: field.requiredErrorText ?? "This field can not be enabled" };
+      return field.requiredErrorText ?? "This field is required";
+    }
+  } else if (cond?.reverse && field.required) {
+    return field.requiredErrorText ?? "This field is not allowed to have a value";
+  }
+
+  // Check constraints
+  if (cond && (typeof value === "string" || typeof value === "number")) {
+    // minValue
+    if (typeof value === "string" && cond.minValue && value.length < cond.minValue) {
+      return cond.minLengthErrorText ?? `Minimum length is ${cond.minValue}`;
+    }
+    if (typeof value === "number" && cond.minValue && value < cond.minValue) {
+      return cond.minValueErrorText ?? `Minimum value is ${cond.minValue}`;
+    }
+
+    // maxValue
+    if (typeof value === "string" && cond.maxValue && value.length > cond.maxValue) {
+      return cond.maxLengthErrorText ?? `Maximum length is ${cond.maxValue}`;
+    }
+    if (typeof value === "number" && cond.maxValue && value > cond.maxValue) {
+      return cond.maxValueErrorText ?? `Maximum value is ${cond.maxValue}`;
+    }
+
+    // forbiddenValues
+    if (cond.forbiddenValues?.includes(value)) {
+      return cond.forbiddenValuesErrorText ?? "This value is not allowed";
+    }
+
+    // forbiddenCharacters
+    if (typeof value === "string" && cond.forbiddenCharacters) {
+      const forbidden = cond.forbiddenCharacters.filter((char) => value.includes(char));
+      if (forbidden.length > 0) {
+        return cond.forbiddenCharactersErrorText ?? `Forbidden characters: ${forbidden.join(", ")}`;
       }
-      // If the field is not required and the value is empty, there is no reason to check further
-      return { isValid: true };
+    }
+
+    // regex
+    if (typeof value === "string" && cond.regex && !cond.regex.test(value)) {
+      return cond.regexErrorText ?? "This value does not match the required format";
     }
   }
 
-  // Check if the field has other validation conditions
-  const conditions = field.validationConditions;
-  if (conditions) {
-    // Checks that are only relevant for strings or numbers
-    if (typeof value === "string" || typeof value === "number") {
-      // Check if the field is below the minimum length/value
-      if (conditions.minValue && typeof value !== "boolean") {
-        if (typeof value === "string" && value.length < conditions.minValue) {
-          return { isValid: false, errorText: conditions.minLengthErrorText ?? `Minimum length is ${conditions.minValue}` };
-        } else if (typeof value === "number" && value < conditions.minValue) {
-          return { isValid: false, errorText: conditions.minValueErrorText ?? `Minimum value is ${conditions.minValue}` };
-        }
-      }
-      // Check if the field is above the maximum length/value
-      if (conditions.maxValue && typeof value !== "boolean") {
-        if (typeof value === "string" && value.length > conditions.maxValue) {
-          return { isValid: false, errorText: conditions.maxLengthErrorText ?? `Maximum length is ${conditions.maxValue}` };
-        } else if (typeof value === "number" && value > conditions.maxValue) {
-          return { isValid: false, errorText: conditions.maxValueErrorText ?? `Maximum value is ${conditions.maxValue}` };
-        }
-      }
-      // Check if the value is in the forbidden values list
-      if (conditions.forbiddenValues && conditions.forbiddenValues.includes(value)) {
-        return { isValid: false, errorText: conditions.forbiddenValuesErrorText ?? "This value is not allowed" };
-      }
-      // Check if the value contains forbidden characters
-      if (conditions.forbiddenCharacters && typeof value === "string") {
-        const forbiddenChars = conditions.forbiddenCharacters.filter((char) => value.includes(char));
-        if (forbiddenChars.length > 0) {
-          const errorText = conditions.forbiddenCharactersErrorText ?? "This value contains forbidden characters";
-          return { isValid: false, errorText: errorText + `: ${forbiddenChars.join(", ")}` };
-        }
-      }
-      // Check if the value matches the regex pattern
-      if (conditions.regex && typeof value === "string") {
-        if (!conditions.regex.test(value)) {
-          return { isValid: false, errorText: conditions.regexErrorText ?? "This value does not match the required format" };
-        }
-      }
-    }
-  }
-  return { isValid: true };
+  return null; // No validation errors
 }

@@ -128,8 +128,12 @@ export interface FieldConditions {
   maxLengthErrorText?: string;
   forbiddenValues?: (string | number)[]; // Values that are not allowed in the field
   forbiddenValuesErrorText?: string;
+  mandatoryValues?: (string | number)[]; // Values that must be present in the field value
+  mandatoryValuesErrorText?: string; // Default to "This value must be one of the following values"
   forbiddenCharacters?: string[]; // Characters that are not allowed in the field
   forbiddenCharactersErrorText?: string; // Default to "This value contains forbidden characters"
+  mandatoryCharacters?: string[]; // Characters that must be present in the field value
+  mandatoryCharactersErrorText?: string; // Default to "This value must contain the following characters
   regex?: RegExp; // Regular expression that the field value must match
   regexErrorText?: string; // Default to "This value does not match the required format"
 }

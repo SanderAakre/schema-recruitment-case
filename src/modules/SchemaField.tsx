@@ -32,42 +32,32 @@ import type { FieldData, SelectOption, FieldValue } from "@/types";
 
 interface Props {
   field: FieldData;
+  onValidate?: (result: FieldValue) => void;
 }
 
-const SchemaField = ({ field }: Props) => {
+const SchemaField = ({ field, onValidate }: Props) => {
   const { type = "text", tailwindClasses } = field;
 
   return (
     <Box className={tailwindClasses}>
-      {field.title && (
-        <Box mb={1} id={`Field ${field.name} title root`}>
-          <FieldTitleComp data={field.title} />
-        </Box>
-      )}
-      {field.subText && (
-        <Box mb={1} id={`Field ${field.name} subtext root`}>
-          <SubTextComp data={field.subText} />
-        </Box>
-      )}
+      {field.title && <FieldTitleComp data={field.title} />}
+      {field.subText && <SubTextComp data={field.subText} />}
       {(() => {
         switch (type) {
+          case "text":
           case "checkbox":
           case "number":
-          case "text":
-            return <TextInput field={field} />;
+            return <TextInput field={field} onValidate={onValidate} />;
           case "comment":
-            return <TextInput field={field} multiline rows={4} />;
-          case "multiCheckbox":
+            return <TextInput field={field} onValidate={onValidate} multiline rows={4} />;
           case "select":
           case "radio":
+          case "multiCheckbox":
           case "autofill":
-            return <SelectField field={field} />;
+            return <SelectInput field={field} onValidate={onValidate} />;
           default:
-            <Typography variant="body2" color="error">
-              Unsupported field type: {type}
-            </Typography>;
-            console.warn(`Unsupported field type "${type}" for field "${field.name}"`);
-            return null;
+            console.warn(`Unsupported field type "${type}"`);
+            return <Typography color="error">Unsupported field type</Typography>;
         }
       })()}
     </Box>
@@ -76,93 +66,38 @@ const SchemaField = ({ field }: Props) => {
 
 export default SchemaField;
 
-const TextInput = ({ field, multiline = false, rows }: { field: FieldData; multiline?: boolean; rows?: number }) => {
+const TextInput = ({
+  field,
+  multiline = false,
+  rows = 1,
+  onValidate,
+}: {
+  field: FieldData;
+  multiline?: boolean;
+  rows?: number;
+  onValidate?: (result: FieldValue) => void;
+}) => {
   const [value, setValue] = useState<string | number | boolean>(field.defaultValue ?? "");
   const [error, setError] = useState<string | null>(null);
   const [disabled, setDisabled] = useState(false);
 
-  function validateValue(): string | null {
-    // Check if the value is empty or null
-    if (value === "" || value === null || value === undefined || value === false) {
-      if (field.required) {
-        if (field.validationConditions?.reverse) {
-          // If the field is required but has reverse validation, do not set an error
-          setError(null);
-          return null;
-        }
-        // If the field is required and the value is empty, set an error
-        setError(field.requiredErrorText ?? "This field is required");
-        return field.requiredErrorText ?? "This field is required";
-      } else {
-        // If the field is not required and has reverse validation, set an error
-        if (field.validationConditions?.reverse) {
-          setError(field.requiredErrorText ?? "This field can not be enabled");
-          return field.requiredErrorText ?? "This field can not be enabled";
-        }
-        // If the field is not required and the value is empty, there is no reason to check further
-        setError(null);
-        return null;
-      }
-    }
-
-    // Check if the field has other validation conditions
-    const conditions = field.validationConditions;
-    if (conditions) {
-      // Checks that are only relevant for strings or numbers
-      if (typeof value === "string" || typeof value === "number") {
-        // Check if the field is below the minimum length/value
-        if (conditions.minValue && typeof value !== "boolean") {
-          if (typeof value === "string" && value.length < conditions.minValue) {
-            setError(conditions.minLengthErrorText ?? `Minimum length is ${conditions.minValue}`);
-            return conditions.minLengthErrorText ?? `Minimum length is ${conditions.minValue}`;
-          } else if (typeof value === "number" && value < conditions.minValue) {
-            setError(conditions.minValueErrorText ?? `Minimum value is ${conditions.minValue}`);
-            return conditions.minValueErrorText ?? `Minimum value is ${conditions.minValue}`;
-          }
-        }
-        // Check if the field is above the maximum length/value
-        if (conditions.maxValue && typeof value !== "boolean") {
-          if (typeof value === "string" && value.length > conditions.maxValue) {
-            setError(conditions.maxLengthErrorText ?? `Maximum length is ${conditions.maxValue}`);
-            return conditions.maxLengthErrorText ?? `Maximum length is ${conditions.maxValue}`;
-          } else if (typeof value === "number" && value > conditions.maxValue) {
-            setError(conditions.maxValueErrorText ?? `Maximum value is ${conditions.maxValue}`);
-            return conditions.maxValueErrorText ?? `Maximum value is ${conditions.maxValue}`;
-          }
-        }
-        // Check if the value is in the forbidden values list
-        if (conditions.forbiddenValues && conditions.forbiddenValues.includes(value)) {
-          setError(conditions.forbiddenValuesErrorText ?? "This value is not allowed");
-          return conditions.forbiddenValuesErrorText ?? "This value is not allowed";
-        }
-        // Check if the value contains forbidden characters
-        if (conditions.forbiddenCharacters && typeof value === "string") {
-          const forbiddenChars = conditions.forbiddenCharacters.filter((char) => value.includes(char));
-          if (forbiddenChars.length > 0) {
-            const errorText = conditions.forbiddenCharactersErrorText ?? "This value contains forbidden characters";
-            setError(errorText + `: ${forbiddenChars.join(", ")}`);
-            return errorText + `: ${forbiddenChars.join(", ")}`;
-          }
-        }
-        // Check if the value matches the regex pattern
-        if (conditions.regex && typeof value === "string") {
-          if (!conditions.regex.test(value)) {
-            setError(conditions.regexErrorText ?? "This value does not match the required format");
-            return conditions.regexErrorText ?? "This value does not match the required format";
-          }
-        }
-      }
-    }
-
-    setError(null); // Clear error if validation passes
-    return null; // Return null = no error
-  }
+  const handleValidation = (nextValue: string | number | boolean) => {
+    const result = validateFieldValue(field, nextValue);
+    setError(result);
+    onValidate?.({
+      fieldName: field.name,
+      value: JSON.stringify(nextValue),
+      valid: result ? false : true,
+      errorText: result ?? undefined,
+    });
+  };
 
   if (field.type === "checkbox") {
     return (
       <Box display="flex" flexDirection="column" gap={0.5} sx={{ width: "100%" }}>
         <FormControl fullWidth margin="dense" error={!!error}>
           <FormControlLabel
+            value={value}
             label={field.label ?? field.name}
             required={field.required}
             defaultChecked={!!field.defaultValue}
@@ -170,11 +105,8 @@ const TextInput = ({ field, multiline = false, rows }: { field: FieldData; multi
             onChange={(e) => {
               setValue((e.target as HTMLInputElement).checked);
               if (error) {
-                setError(null); // Clear error on change
+                handleValidation((e.target as HTMLInputElement).checked); // Validate on change
               }
-            }}
-            onBlur={() => {
-              validateValue();
             }}
           />
           <FormHelperText>{error || field.description}</FormHelperText>
@@ -187,45 +119,54 @@ const TextInput = ({ field, multiline = false, rows }: { field: FieldData; multi
     <TextField
       fullWidth
       margin="dense"
+      value={value}
       type={field.type}
       label={field.noLabel ? undefined : field.label ?? field.name}
       required={field.required}
       placeholder={field.placeholder}
-      defaultValue={typeof field.defaultValue === "string" || typeof field.defaultValue === "number" ? field.defaultValue : ""}
-      helperText={field.description}
-      multiline={multiline}
-      rows={rows}
+      helperText={error || field.description}
       disabled={disabled}
       error={!!error}
       onChange={(e) => {
-        setValue(e.target.value);
+        const val = field.type === "number" ? Number(e.target.value) : e.target.value;
+        setValue(val);
         if (error) {
-          setError(null); // Clear error on change
+          handleValidation(val); // Validate on change
         }
       }}
-      onBlur={() => {
-        validateValue();
-      }}
+      multiline={multiline}
+      rows={rows}
     />
   );
 };
 
-const SelectField = ({ field }: { field: FieldData }) => {
+const SelectInput = ({ field, onValidate }: { field: FieldData; onValidate?: (result: FieldValue) => void }) => {
   const [options, setOptions] = useState<SelectOption[]>([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [disabled, setDisabled] = useState(false);
-
-  // Value state logic
   const [value, setValue] = useState<string>("");
+
+  const handleValidation = (nextValue: string) => {
+    const result = validateFieldValue(field, nextValue);
+    setError(result);
+    onValidate?.({
+      fieldName: field.name,
+      value: JSON.stringify(nextValue),
+      valid: result ? false : true,
+      errorText: result ?? undefined,
+    });
+  };
+
   const handleChange = (event: SelectChangeEvent) => {
-    setValue(event.target.value as string);
+    const val = event.target.value;
+    setValue(val);
+    handleValidation(val);
   };
 
   useEffect(() => {
     const loadOptions = async () => {
       if (!field.optionsUrl) {
-        // If no optionsUrl is provided, load static options
         loadStaticOptions();
         return;
       }
@@ -239,37 +180,37 @@ const SelectField = ({ field }: { field: FieldData }) => {
         const loadedOpts = (json as (string | SelectOption)[]).map((opt) => (typeof opt === "string" ? { value: opt, label: opt } : opt));
         setOptions(loadedOpts);
 
-        const validDefault = typeof field.defaultValue === "string" && loadedOpts.some((opt) => opt.value === field.defaultValue);
-
-        setValue(validDefault ? (field.defaultValue as string) : "");
+        const defaultStr = typeof field.defaultValue === "string" ? field.defaultValue : "";
+        const validDefault = loadedOpts.some((opt) => opt.value === defaultStr);
+        const defaultVal = validDefault ? defaultStr : "";
+        setValue(defaultVal);
       } catch (err) {
-        console.error(`Failed to load options for "${field.name}" from ${field.optionsUrl}`, err);
-        console.log(`Attempting to load static options instead.`);
+        console.error(`Failed to load options for "${field.name}"`, err);
+        console.log(`Attempting to load static options instead...`);
         loadStaticOptions();
       } finally {
         setLoading(false);
       }
     };
 
+    const loadStaticOptions = () => {
+      const staticOpts = (field.options ?? []).map((opt) => (typeof opt === "string" ? { value: opt, label: opt } : opt));
+      if (staticOpts.length === 0) {
+        setDisabled(true);
+        setOptions([{ value: "", label: "ERROR: No options!" }]);
+      } else {
+        setOptions(staticOpts);
+      }
+
+      const defaultStr = typeof field.defaultValue === "string" ? field.defaultValue : "";
+      const validDefault = staticOpts.some((opt) => opt.value === defaultStr);
+      const defaultVal = validDefault ? defaultStr : "";
+      setValue(defaultVal);
+    };
+
     loadOptions();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
-  const loadStaticOptions: () => void = () => {
-    const staticOpts: SelectOption[] = (field.options ?? []).map((opt: string | SelectOption) => (typeof opt === "string" ? { value: opt, label: opt } : opt));
-    // If no options are provided, log a warning
-    if (staticOpts.length === 0) {
-      console.warn(`No options provided for field "${field.name}".`);
-      setDisabled(true);
-      setOptions([{ value: "", label: "!! Failed to load options !!" }]);
-    }
-    setOptions(staticOpts);
-
-    const validDefault: boolean = typeof field.defaultValue === "string" && staticOpts.some((opt) => opt.value === field.defaultValue);
-
-    setValue(validDefault ? (field.defaultValue as string) : "");
-    return;
-  };
 
   return (
     <FormControl fullWidth margin="dense" error={!!error}>
@@ -292,7 +233,7 @@ const SelectField = ({ field }: { field: FieldData }) => {
       )}
       {/* RadioSelect */}
       {field.type === "radio" && (
-        <RadioGroup defaultValue={field.defaultValue} name="radio-buttons-group">
+        <RadioGroup value={value} onChange={handleChange} defaultValue={field.defaultValue} name={field.name}>
           {options.map((opt) => (
             <FormControlLabel
               key={opt.value}
@@ -307,7 +248,19 @@ const SelectField = ({ field }: { field: FieldData }) => {
       )}
       {/* Autofill */}
       {field.type === "autofill" && (
-        <Autocomplete disablePortal options={options} renderInput={(params) => <TextField placeholder={field.placeholder} {...params} />} />
+        <Autocomplete
+          disablePortal
+          options={options}
+          getOptionLabel={(option) => option.label ?? option.value}
+          isOptionEqualToValue={(option, value) => option.value === value.value}
+          value={options.find((opt) => opt.value === value) || null}
+          onChange={(_event, newValue) => {
+            const selectedValue = newValue ? newValue.value : "";
+            setValue(selectedValue);
+            handleValidation(selectedValue);
+          }}
+          renderInput={(params) => <TextField placeholder={field.placeholder} {...params} />}
+        />
       )}
       {/* Select */}
       {field.type === "select" && (
