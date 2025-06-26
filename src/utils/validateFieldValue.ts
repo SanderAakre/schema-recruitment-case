@@ -3,13 +3,11 @@ import type { FieldData, SelectOption } from "@/types";
 /**
  * Validates a field value based on its validation conditions.
  * Returns an error message if validation fails, or null if valid.
- *
  * @param field - The field data containing validation rules.
  * @param value - The value to validate, can be string, number, boolean, SelectOption, or null/undefined.
  * @returns An error message string if validation fails, or null if valid.
  */
 export function validateFieldValue(field: FieldData, value: string | number | boolean | SelectOption | null | undefined): string | null {
-  console.log(`Validating field: ${field.name} with value:`, value);
   const cond = field.validationConditions;
 
   // Handle required and empty and reverse conditions
@@ -26,13 +24,16 @@ export function validateFieldValue(field: FieldData, value: string | number | bo
   }
 
   // Check constraints
-  if (cond && (typeof value === "string" || typeof value === "number")) {
+  if (cond && (typeof value === "string" || typeof value === "number" || Array.isArray(value))) {
     // minValue
     if (typeof value === "string" && cond.minValue && value.length < cond.minValue) {
       return cond.minLengthErrorText ?? `Minimum length is ${cond.minValue}`;
     }
     if (typeof value === "number" && cond.minValue && value < cond.minValue) {
       return cond.minValueErrorText ?? `Minimum value is ${cond.minValue}`;
+    }
+    if (Array.isArray(value) && cond.minValue && value.length < cond.minValue) {
+      return cond.minLengthErrorText ?? `Minimum length is ${cond.minValue}`;
     }
 
     // maxValue
@@ -42,9 +43,12 @@ export function validateFieldValue(field: FieldData, value: string | number | bo
     if (typeof value === "number" && cond.maxValue && value > cond.maxValue) {
       return cond.maxValueErrorText ?? `Maximum value is ${cond.maxValue}`;
     }
+    if (Array.isArray(value) && cond.maxValue && value.length > cond.maxValue) {
+      return cond.maxLengthErrorText ?? `Maximum length is ${cond.maxValue}`;
+    }
 
     // forbiddenValues
-    if (cond.forbiddenValues?.includes(value)) {
+    if (cond.forbiddenValues && (typeof value === "string" || typeof value === "number") && cond.forbiddenValues.includes(value)) {
       return cond.forbiddenValuesErrorText ?? "This value is not allowed";
     }
 

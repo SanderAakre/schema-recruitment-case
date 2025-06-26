@@ -23,8 +23,10 @@ const schemaData: SchemaData = {
   pages: [
     {
       name: "Side 1",
-      title: "Sidetittel",
-      subText: "Denne siden inneholder eksempler på enkle felttyper, grupperte felter og deres diverse hjelpetekster.",
+      title: "Side 1 - Enkle Felttyper og Grupperinger",
+      subText: {
+        spans: [{ text: "Denne siden inneholder eksempler på enkle felttyper, grupperte felter og deres diverse hjelpetekster." }],
+      },
       fieldGroups: [
         {
           name: "Gruppe 1-1",
@@ -93,29 +95,22 @@ const schemaData: SchemaData = {
           groupName: "Gruppe 1-2",
         },
         {
-          name: "kommentarFelt1",
-          type: "comment",
-          title: "Kommentar",
-          noLabel: true,
-          placeholder: "Skriv en kommentar...",
-        },
-        {
           name: "tallFelt1",
           type: "number",
           label: "Tallfelt",
           placeholder: "Skriv et tall...",
         },
         {
-          name: "sjekkBoks1",
-          type: "checkbox",
-          label: "Sjekkboks",
+          name: "kommentarFelt1",
+          type: "comment",
+          title: "Kommentar",
+          noLabel: true,
+          placeholder: "Skriv en kommentar...",
         },
       ],
     },
     {
       name: "Side 2",
-      title: "Side 2",
-      subText: "Denne siden inneholder eksempler på felttyper med valgmuligheter.",
       fieldGroups: [
         {
           name: "Gruppe 2-1",
@@ -125,6 +120,12 @@ const schemaData: SchemaData = {
         },
       ],
       fields: [
+        {
+          name: "sjekkBoks1",
+          type: "checkbox",
+          label: "Sjekkboks",
+          groupName: "Gruppe 2-1",
+        },
         {
           name: "radioValg1",
           type: "radio",
@@ -167,6 +168,8 @@ const schemaData: SchemaData = {
           title: "Autofill",
           description: "Dette feltet vil autofylle med alternativer basert på det du skriver.",
           placeholder: "Begynn å skrive...",
+          required: true,
+          requiredErrorText: "Dette feltet er obligatorisk.",
           options: [
             { value: "alpha", label: "Alpha" },
             { value: "beta", label: "Beta" },
@@ -199,7 +202,7 @@ const schemaData: SchemaData = {
     },
     {
       name: "Side 3",
-      title: "Side 3",
+      title: "Side 3 - Validering og Avhengigheter",
       subText: "Denne siden inneholder eksempler på felttyper med validering og avhengigheter.",
       fieldGroups: [
         {
@@ -284,7 +287,7 @@ const schemaData: SchemaData = {
         {
           name: "multiSjekkBoks2",
           type: "multiCheckbox",
-          title: "Velg minst ett alternativ",
+          label: "Velg minst ett alternativ",
           description: "Velg en eller flere alternativer, minst ett må velges.",
           required: true,
           requiredErrorText: "Du må velge minst ett alternativ.",
@@ -302,7 +305,7 @@ const schemaData: SchemaData = {
         {
           name: "multiSjekkBoks3",
           type: "multiCheckbox",
-          title: "Velg 2 alternativer",
+          label: "Velg 2 alternativer",
           description: "Du må velge nøyaktig to alternativer.",
           required: true,
           requiredErrorText: "Du må velge to alternativer.",

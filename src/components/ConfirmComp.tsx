@@ -14,6 +14,16 @@ interface Props {
   onCancel: () => void;
 }
 
+/**
+ * Reusable confirmation dialog component that prompts the user for confirmation before performing an action.
+ * Supports customization of the title, subtext, and button texts.
+ * @param {Object} props - The properties for the ConfirmComp component.
+ * @param {ConfirmationData} [props.data] - Optional data for confirmation dialog customization.
+ * @param {boolean} props.open - Whether the dialog is open or not.
+ * @param {Function} props.onConfirm - Callback function to be called when the user confirms the action.
+ * @param {Function} props.onCancel - Callback function to be called when the user cancels the action.
+ * @returns {JSX.Element | null} The rendered confirmation dialog component or null if not in use.
+ */
 const ConfirmComp = ({ data, open, onConfirm, onCancel }: Props) => {
   const { use = true, title = "Are you sure?", subText, confirmButton = "Confirm", cancelButton = "Cancel", tailwindClasses } = data ?? {};
 
@@ -27,9 +37,7 @@ const ConfirmComp = ({ data, open, onConfirm, onCancel }: Props) => {
       <DialogTitle>
         <TextComp data={title} />
       </DialogTitle>
-      <DialogContent>
-        <TextComp data={subText} />
-      </DialogContent>
+      <DialogContent>{subText && <TextComp data={subText} />}</DialogContent>
       <DialogActions>
         <Button onClick={onCancel}>{cancelText}</Button>
         <Button variant="contained" onClick={onConfirm}>

@@ -153,8 +153,3 @@ export interface PageValues {
   pageName: string; // Name of the page
   fields: FieldValue[]; // Array of field values for the page
 }
-
-export interface FormValues {
-  schemaName: string; // Name of the schema
-  pages: PageValues[]; // Array of page values for the schema
-}

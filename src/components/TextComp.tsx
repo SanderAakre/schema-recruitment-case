@@ -101,7 +101,7 @@ export const PageTitleComp = ({ data }: Props) => {
  * @returns {JSX.Element} The rendered group title component.
  */
 export const GroupTitleComp = ({ data }: Props) => {
-  return <TextComp data={data} defaultType="h3" />;
+  return <TextComp data={data} defaultType="h4" />;
 };
 
 /** FieldTitleComp renders the TextComp component with h4.
@@ -109,7 +109,7 @@ export const GroupTitleComp = ({ data }: Props) => {
  * @returns {JSX.Element} The rendered field title component.
  */
 export const FieldTitleComp = ({ data }: Props) => {
-  return <TextComp data={data} defaultType="h4" />;
+  return <TextComp data={data} defaultType="h5" />;
 };
 
 /** SubTextComp renders the TextComp component with body2.
