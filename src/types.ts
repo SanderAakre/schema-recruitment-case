@@ -120,6 +120,8 @@ export interface FieldData {
   description?: string;
   placeholder?: string;
   defaultValue?: string | number | boolean;
+  maxInput?: number; // Maximum value for number fields, or maximum length for text fields
+  minInput?: number; // Minimum value for number fields
   validationConditions?: FieldConditions;
   dependencies?: Dependency[];
   tailwindClasses?: string;

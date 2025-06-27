@@ -156,6 +156,15 @@ const SchemaField = forwardRef<SchemaFieldHandle, Props>(({ field, parentValues,
                 }}
                 multiline={type === "comment" ? true : false}
                 rows={type === "comment" ? 4 : 1}
+                slotProps={{
+                  htmlInput:
+                    field.type === "number"
+                      ? {
+                          ...(field.minInput !== undefined ? { min: field.minInput } : {}),
+                          ...(field.maxInput !== undefined ? { max: field.maxInput } : {}),
+                        }
+                      : undefined,
+                }}
               />
             );
           default:
