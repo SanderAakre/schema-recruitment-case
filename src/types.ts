@@ -92,6 +92,7 @@ export interface GroupData {
  * @property title - Optional title for the field, will be displayed above the field. Can be a simple string or a {@link TextData} object for advanced formatting.
  * @property subText - Optional subtext that shows below the title. Can be a string or {@link TextData}.
  * @property label - Label for the field, defaults to the field name if not provided.
+ * @property disabled - If true, the field will be disabled and not editable. Defaults to false.
  * @property required - Whether the field is required, defaults to false.
  * @property requiredErrorText - Error text shown if the field is required but not filled, defaults to "This field is required".
  * @property noLabel - Whether to hide the label, defaults to false.
@@ -111,6 +112,7 @@ export interface FieldData {
   title?: string | TextData;
   subText?: string | TextData;
   label?: string;
+  disabled?: boolean; // Optional, if true, the field will be disabled
   required?: boolean;
   requiredErrorText?: string;
   noLabel?: boolean;
@@ -118,6 +120,8 @@ export interface FieldData {
   description?: string;
   placeholder?: string;
   defaultValue?: string | number | boolean;
+  maxInput?: number; // Maximum value for number fields, or maximum length for text fields
+  minInput?: number; // Minimum value for number fields
   validationConditions?: FieldConditions;
   dependencies?: Dependency[];
   tailwindClasses?: string;
