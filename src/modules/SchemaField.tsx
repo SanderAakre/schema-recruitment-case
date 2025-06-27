@@ -49,11 +49,37 @@ export interface SchemaFieldHandle {
 const SchemaField = forwardRef<SchemaFieldHandle, Props>(({ field, parentValues, onValueChange, initialValue }, ref) => {
   const [value, setValue] = useState<FieldPrimitive>(initialValue ?? field.defaultValue ?? "");
   const [error, setError] = useState<string | null>(null);
-  const [disabled, setDisabled] = useState(false);
+  const [disabled, setDisabled] = useState(field.disabled ?? false);
   const isActiveRef = useRef(true); // Default to active
 
   const { type = "text", tailwindClasses } = field;
-  const options = (field.options ?? []).map((opt) => (typeof opt === "string" ? { value: opt, label: opt } : opt));
+
+  // If optionsUrl is provided, fetch options from the URL, if it fails, use the provided options
+  const [options, setOptions] = useState<{ value: string; label?: string }[]>(() =>
+    (field.options ?? []).map((opt) => (typeof opt === "string" ? { value: opt, label: opt } : opt))
+  );
+
+  useEffect(() => {
+    let isMounted = true;
+    if (field.optionsUrl) {
+      fetch(field.optionsUrl)
+        .then((res) => res.json())
+        .then((data) => {
+          if (isMounted) {
+            setOptions(data.map((opt: string | { value: string; label?: string }) => (typeof opt === "string" ? { value: opt, label: opt } : opt)));
+          }
+        })
+        .catch(() => {
+          if (isMounted) {
+            setOptions((field.options ?? []).map((opt) => (typeof opt === "string" ? { value: opt, label: opt } : opt)));
+          }
+        });
+    }
+    return () => {
+      isMounted = false;
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   useEffect(() => {
     const active =
@@ -108,6 +134,7 @@ const SchemaField = forwardRef<SchemaFieldHandle, Props>(({ field, parentValues,
       {field.subText && <SubTextComp data={field.subText} />}
       {(() => {
         switch (type) {
+          /* Render field based on its type */
           case "text":
           case "number":
           case "comment":
@@ -134,8 +161,8 @@ const SchemaField = forwardRef<SchemaFieldHandle, Props>(({ field, parentValues,
           default:
             return (
               <FormControl fullWidth margin="dense" error={!!error} required={field.required} disabled={disabled}>
-                {/* Render label if present and not suppressed */}
-                {field.label && !field.noLabel && <FormLabel>{field.label}</FormLabel>}
+                {/* Render label if present and not suppressed, and not for checkbox */}
+                {field.label && !field.noLabel && type !== "checkbox" && <FormLabel>{field.label}</FormLabel>}
 
                 {/* Checkbox */}
                 {type === "checkbox" && (
@@ -158,6 +185,7 @@ const SchemaField = forwardRef<SchemaFieldHandle, Props>(({ field, parentValues,
                   <FormGroup>
                     {options.map((opt) => (
                       <FormControlLabel
+                        disabled={disabled}
                         key={opt.value}
                         value={opt.value}
                         label={opt.label ?? opt.value}
@@ -185,6 +213,7 @@ const SchemaField = forwardRef<SchemaFieldHandle, Props>(({ field, parentValues,
                   <RadioGroup value={value} defaultValue={field.defaultValue} name={field.name}>
                     {options.map((opt) => (
                       <FormControlLabel
+                        disabled={disabled}
                         key={opt.value}
                         value={opt.value}
                         control={<Radio />}
@@ -202,6 +231,7 @@ const SchemaField = forwardRef<SchemaFieldHandle, Props>(({ field, parentValues,
                 {field.type === "autofill" && (
                   <Autocomplete
                     disablePortal
+                    disabled={disabled}
                     options={options}
                     getOptionLabel={(option) => option.label ?? option.value}
                     isOptionEqualToValue={(option, value) => option.value === value.value}
@@ -218,8 +248,9 @@ const SchemaField = forwardRef<SchemaFieldHandle, Props>(({ field, parentValues,
                 {field.type === "select" && (
                   <Select
                     value={value}
-                    displayEmpty
+                    disabled={disabled}
                     error={!!error}
+                    displayEmpty
                     onChange={(e) => {
                       setValue(e.target.value);
                     }}

@@ -1,0 +1,428 @@
+{
+  "title": "Eksempelskjema",
+  "subText": "Dette skjemaet illustrerer ulike felttyper, grupperinger og validering som er mulig med dette skjemaoppsettet.",
+  "nextPageButton": {
+    "text": "Neste side"
+  },
+  "previousPageButton": {
+    "text": "Forrige side"
+  },
+  "submitButton": {
+    "text": "Send inn skjema",
+    "confirmation": {
+      "title": "Bekreft innsending",
+      "subText": "Er du sikker på at du vil sende inn skjemaet?",
+      "confirmButton": "Ja, send inn",
+      "cancelButton": "Avbryt"
+    }
+  },
+  "successMessage": "Ditt svar er registrert!",
+  "errorMessage": "En feil oppstod under innsending av skjemaet.",
+  "pages": [
+    {
+      "name": "Side 1",
+      "title": "Side 1 - Tekstfelt og Grupperinger",
+      "subText": "Denne siden inneholder eksempler på tekstfelt, grupperinger og diverse tilleggsinformasjon og teksttyper som kan legges til.",
+      "fieldGroups": [
+        {
+          "name": "Gruppe 1-1",
+          "title": "Grupperte Felter",
+          "subText": {
+            "text": "Felter som er gruppert sammen har mindre plass mellom seg.",
+            "helpText": "Dette kan endres med `gapSize` egenskapen i gruppen."
+          }
+        },
+        {
+          "name": "Gruppe 1-2",
+          "title": {
+            "text": "Sammenleggbar Gruppe",
+            "helpText": "Klikk på tittelen for å minimere eller maksimere gruppen."
+          },
+          "subText": {
+            "text": "Denne gruppen kan minimeres."
+          },
+          "gapSize": "normal",
+          "collapsable": true
+        },
+        {
+          "name": "Gruppe 1-3",
+          "title": {
+            "text": "Gruppe som er minimert fra start"
+          },
+          "subText": {
+            "spans": [
+              { "text": "Titler og undertitler kan enkelt legges inn med en string verdi, men hvis man vil ha mer avansert formatering er dette også mulig." },
+              { "text": "\n\n" },
+              { "text": "På den måten kan legge til tekst som er " },
+              { "text": "understreket", "underline": true },
+              { "text": ", " },
+              { "text": "fet", "bold": true },
+              { "text": ", " },
+              { "text": "kursiv", "italic": true },
+              { "text": ", eller med " },
+              { "text": "hjelpetekst", "hoverText": "Dette er hjelpetekst for teksten" },
+              { "text": ", eller " },
+              { "text": "lenker.", "link": "https://www.example.com" },
+              { "text": "\n\n" },
+              {
+                "text": "Du kan til og med legge til allt på en gang!",
+                "bold": true,
+                "italic": true,
+                "underline": true,
+                "hoverText": "Trykk på meg!",
+                "link": "https://www.youtube.com/watch?v=dQw4w9WgXcQ&list=RDdQw4w9WgXcQ&start_radio=1"
+              }
+            ]
+          },
+          "gapSize": "normal",
+          "collapsable": true,
+          "startCollapsed": true
+        }
+      ],
+      "fields": [
+        {
+          "name": "enkeltTekstFelt",
+          "label": "Et enkelt tekstfelt",
+          "placeholder": "Her kan du skrive noe..."
+        },
+        {
+          "name": "tekstFeltMedMasseGreier",
+          "label": "Et tekstfelt med masse greier",
+          "title": {
+            "text": "Alle felttyper kan ha en tittel",
+            "helpText": "Tittelen kan ha en `tooltip` som vises når du holder musa over den."
+          },
+          "subText": {
+            "text": "Det kan også ha en undertittel.",
+            "helpText": "Undertittel kan også ha en `tooltip`."
+          },
+          "placeholder": "Her kan du skrive noe annet...",
+          "description": "Det kan til og med ha en beskrivelse som vises her."
+        },
+        {
+          "name": "tekstFeltMedStandardVerdi",
+          "label": "Et tekstfelt med en forhåndsfyllt verdi",
+          "defaultValue": "Dette er en forhåndsutfylt verdi",
+          "placeholder": "Jada, du kan skrive noe annet her hvis du vil..."
+        },
+        {
+          "name": "gruppertFelt1",
+          "label": "Et tekstfelt som i en gruppe",
+          "placeholder": "Du kan skrive noe her...",
+          "groupName": "Gruppe 1-1"
+        },
+        {
+          "name": "gruppertTekstFelt2",
+          "label": "Et til tekstfelt i en gruppe",
+          "placeholder": "Du kan skrive noe her også... Men du trenger ikke.",
+          "groupName": "Gruppe 1-1"
+        },
+        {
+          "name": "gruppertTekstFelt3",
+          "label": "Enda et tekstfelt i en gruppe",
+          "placeholder": "Du kan bare gå videre altså...",
+          "groupName": "Gruppe 1-1"
+        },
+        {
+          "name": "gruppe2Felt1",
+          "type": "text",
+          "label": "Tekstfelt 1 i sammenleggbar gruppe",
+          "groupName": "Gruppe 1-2"
+        },
+        {
+          "name": "gruppe2Felt2",
+          "type": "text",
+          "label": "Tekstfelt 2 i sammenleggbar gruppe",
+          "groupName": "Gruppe 1-2"
+        },
+        {
+          "name": "gruppe3Felt1",
+          "type": "text",
+          "label": "Tekstfelt 1 i minimert gruppe",
+          "groupName": "Gruppe 1-3"
+        },
+        {
+          "name": "gruppe3Felt2",
+          "type": "text",
+          "label": "Tekstfelt 2 i minimert gruppe",
+          "groupName": "Gruppe 1-3"
+        },
+        {
+          "name": "tallFelt1",
+          "type": "number",
+          "label": "Tallfelt",
+          "placeholder": "Skriv et tall..."
+        },
+        {
+          "name": "kommentarFelt1",
+          "type": "comment",
+          "title": "Kommentar",
+          "noLabel": true,
+          "placeholder": "Skriv en kommentar..."
+        }
+      ]
+    },
+    {
+      "name": "Side 2",
+      "fieldGroups": [
+        {
+          "name": "Gruppe 2-1",
+          "title": "Select varianter",
+          "subText": "Denne gruppen inneholder ulike varianter av select-felter.",
+          "gapSize": "half"
+        }
+      ],
+      "fields": [
+        {
+          "name": "sjekkBoks1",
+          "type": "checkbox",
+          "label": "Sjekkboks",
+          "groupName": "Gruppe 2-1"
+        },
+        {
+          "name": "radioValg1",
+          "type": "radio",
+          "title": "Radioknapper",
+          "description": "Velg et alternativ",
+          "options": [
+            { "value": "valg1", "label": "Valg 1" },
+            { "value": "valg2", "label": "Valg 2" },
+            { "value": "valg3", "label": "Valg 3" }
+          ],
+          "groupName": "Gruppe 2-1"
+        },
+        {
+          "name": "multiSjekkBoks1",
+          "type": "multiCheckbox",
+          "title": "Flervalgssjekkbokser",
+          "description": "Velg en eller flere alternativer",
+          "options": [
+            { "value": "valg1", "label": "Valg 1" },
+            { "value": "valg2", "label": "Valg 2" },
+            { "value": "valg3", "label": "Valg 3" }
+          ],
+          "groupName": "Gruppe 2-1"
+        },
+        {
+          "name": "nedtrekksFelt1",
+          "type": "select",
+          "title": "Nedtrekksmeny",
+          "placeholder": "- Velg et alternativ -",
+          "options": [
+            { "value": "valg1", "label": "Valg 1" },
+            { "value": "valg2", "label": "Valg 2" },
+            { "value": "valg3", "label": "Valg 3" }
+          ],
+          "groupName": "Gruppe 2-1"
+        },
+        {
+          "name": "autofillFelt1",
+          "type": "autofill",
+          "title": "Autofill",
+          "description": "Dette feltet vil filtrere valgene basert på det du skriver.",
+          "placeholder": "Begynn å skrive...",
+          "requiredErrorText": "Dette feltet er obligatorisk.",
+          "options": [
+            { "value": "alpha", "label": "Alpha" },
+            { "value": "beta", "label": "Beta" },
+            { "value": "gamma", "label": "Gamma" },
+            { "value": "delta", "label": "Delta" },
+            { "value": "epsilon", "label": "Epsilon" },
+            { "value": "zeta", "label": "Zeta" },
+            { "value": "eta", "label": "Eta" },
+            { "value": "theta", "label": "Theta" },
+            { "value": "iota", "label": "Iota" },
+            { "value": "kappa", "label": "Kappa" },
+            { "value": "lambda", "label": "Lambda" },
+            { "value": "mu", "label": "Mu" },
+            { "value": "nu", "label": "Nu" },
+            { "value": "xi", "label": "Xi" },
+            { "value": "omicron", "label": "Omicron" },
+            { "value": "pi", "label": "Pi" },
+            { "value": "rho", "label": "Rho" },
+            { "value": "sigma", "label": "Sigma" },
+            { "value": "tau", "label": "Tau" },
+            { "value": "upsilon", "label": "Upsilon" },
+            { "value": "phi", "label": "Phi" },
+            { "value": "chi", "label": "Chi" },
+            { "value": "psi", "label": "Psi" },
+            { "value": "omega", "label": "Omega" }
+          ],
+          "groupName": "Gruppe 2-1"
+        },
+        {
+          "name": "landAutofillFelt1",
+          "type": "autofill",
+          "title": "Autofill med valg som er hentet fra fra en URL",
+          "subText": "Praktisk hvis du har en lang liste med valg som du ønsker å hente fra en ekstern kilde eller bare vil ha i en egen fil for å holde JSON-filen liten.",
+          "description": "Dette feltet vil filtrere valgene basert på det du skriver.",
+          "placeholder": "Velg et land...",
+          "optionsUrl": "data/countries.json",
+          "groupName": "Gruppe 2-1"
+        }
+      ]
+    },
+    {
+      "name": "Side 3",
+      "title": "Side 3 - Validering og Avhengigheter",
+      "subText": "Denne siden inneholder eksempler på felttyper med validering og avhengigheter.",
+      "fieldGroups": [
+        {
+          "name": "Gruppe 3-1",
+          "title": "Validering og Avhengigheter",
+          "subText": "Denne gruppen inneholder felter som er avhengige av andre felter.",
+          "collapsable": true
+        },
+        {
+          "name": "Gruppe 3-2",
+          "title": "Checkbokser med validering",
+          "collapsable": true
+        }
+      ],
+      "fields": [
+        {
+          "name": "ObligatoriskTekstFelt1",
+          "type": "text",
+          "label": "Obligatorisk Tekstfelt",
+          "placeholder": "Fyll inn noe her...",
+          "required": true,
+          "requiredErrorText": "Dette feltet er obligatorisk."
+        },
+        {
+          "name": "epostFelt1",
+          "type": "text",
+          "label": "E-postadresse",
+          "placeholder": "Skriv inn noe som ligner en e-postadresse...",
+          "required": true,
+          "requiredErrorText": "Dette feltet er obligatorisk.",
+          "validationConditions": {
+            "regex": "^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$",
+            "regexErrorText": "Vennligst skriv inn en gyldig e-postadresse."
+          }
+        },
+        {
+          "name": "checkboks3",
+          "type": "checkbox",
+          "label": "Checkboks som må være blank",
+          "description": "Denne checkboksen må være blank for at skjemaet skal være gyldig.",
+          "required": true,
+          "requiredErrorText": "Denne checkboksen kan ikke være avkrysset.",
+          "validationConditions": {
+            "reverse": true
+          }
+        },
+        {
+          "name": "visAvhengig1",
+          "type": "checkbox",
+          "label": "Felt som kreves for å få tilgang til et annet felt",
+          "description": "Merk av for å vise det avhengige feltet.",
+          "required": true,
+          "requiredErrorText": "Dette feltet er obligatorisk."
+        },
+        {
+          "name": "avhengigTekstFelt1",
+          "type": "text",
+          "label": "Avhengig Tekstfelt",
+          "placeholder": "Skriv noe her...",
+          "dependencies": [
+            {
+              "dependsOn": "visAvhengig1"
+            }
+          ],
+          "description": "Dette feltet er kun aktivt hvis boksen over er avkrysset."
+        },
+        {
+          "name": "valideringFelt1",
+          "type": "text",
+          "label": "Tekst på mellom 5 og 10 tegn",
+          "description": "Dette feltet må ha mellom 5 og 10 tegn for å være gyldig.",
+          "required": true,
+          "requiredErrorText": "Dette feltet er obligatorisk.",
+          "validationConditions": {
+            "minValue": 5,
+            "minLengthErrorText": "Minimum lengde er 5 tegn.",
+            "maxValue": 10,
+            "maxLengthErrorText": "Maksimum lengde er 10 tegn."
+          }
+        },
+        {
+          "name": "multiSjekkBoks2",
+          "type": "multiCheckbox",
+          "label": "Velg minst ett alternativ",
+          "description": "Velg en eller flere alternativer, minst ett må velges.",
+          "required": true,
+          "requiredErrorText": "Du må velge minst ett alternativ.",
+          "options": [
+            { "value": "valg1", "label": "Valg 1" },
+            { "value": "valg2", "label": "Valg 2" },
+            { "value": "valg3", "label": "Valg 3" },
+            { "value": "valg4", "label": "Valg 4" }
+          ],
+          "validationConditions": {
+            "minValue": 1,
+            "minLengthErrorText": "Du må velge minst ett alternativ."
+          }
+        },
+        {
+          "name": "multiSjekkBoks3",
+          "type": "multiCheckbox",
+          "label": "Velg 2 alternativer",
+          "description": "Du må velge nøyaktig to alternativer.",
+          "required": true,
+          "requiredErrorText": "Du må velge to alternativer.",
+          "options": [
+            { "value": "valg1", "label": "Valg 1" },
+            { "value": "valg2", "label": "Valg 2" },
+            { "value": "valg3", "label": "Valg 3" },
+            { "value": "valg4", "label": "Valg 4" }
+          ],
+          "validationConditions": {
+            "minValue": 2,
+            "maxValue": 2,
+            "minLengthErrorText": "Du må velge to alternativer.",
+            "maxLengthErrorText": "Du må velge to alternativer."
+          }
+        },
+        {
+          "name": "forbudtTekstFelt1",
+          "type": "text",
+          "label": "Tekst med forbudte tegn",
+          "placeholder": "Skriv noe her...",
+          "description": "Dette feltet kan ikke inneholde tall",
+          "required": true,
+          "requiredErrorText": "Dette feltet er obligatorisk.",
+          "validationConditions": {
+            "forbiddenCharacters": ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"],
+            "forbiddenCharactersErrorText": "Dette feltet kan ikke inneholde tall."
+          }
+        },
+        {
+          "name": "forbudtOrdFelt1",
+          "type": "text",
+          "label": "Tekst med forbudte ord",
+          "placeholder": "Skriv noe her...",
+          "description": "Dette feltet kan ikke inneholde ordet 'forbudt'",
+          "required": true,
+          "requiredErrorText": "Dette feltet er obligatorisk.",
+          "validationConditions": {
+            "forbiddenValues": ["forbudt"],
+            "forbiddenValuesErrorText": "Dette feltet kan ikke inneholde ordet 'forbudt'."
+          }
+        },
+        {
+          "name": "krevetOrdFelt1",
+          "type": "text",
+          "label": "Tekst som må inneholde et spesifikt ord",
+          "placeholder": "Skriv noe her...",
+          "description": "Dette feltet må inneholde ordet 'obligatorisk'",
+          "required": true,
+          "requiredErrorText": "Dette feltet er obligatorisk.",
+          "validationConditions": {
+            "regex": "obligatorisk",
+            "regexErrorText": "Dette feltet må inneholde ordet 'obligatorisk'."
+          }
+        }
+      ]
+    }
+  ]
+}

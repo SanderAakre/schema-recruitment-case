@@ -1,7 +1,7 @@
 import { useState, useRef } from "react";
 
 // MUI components
-import { Box, Typography, Stack } from "@mui/material";
+import { Box, Typography, Stack, Divider } from "@mui/material";
 
 // Custom components
 import SchemaPage from "./SchemaPage";
@@ -48,15 +48,16 @@ const SchemaForm = ({ schema }: Props) => {
   return (
     <Box id="Schema container root">
       {schema.title && (
-        <Box mb={2}>
+        <Box mb={2} display="flex" justifyContent="center">
           <TitleComp data={schema.title} />
         </Box>
       )}
       {schema.subText && (
         <Box mb={2}>
-          <TextComp data={schema.subText} />
+          <TextComp data={schema.subText} centerText />
         </Box>
       )}
+      {schema.title || schema.subText ? <Divider sx={{ mb: 2 }} /> : null}
 
       {pages[currentPage] ? (
         <Box mb={4}>
@@ -74,6 +75,7 @@ const SchemaForm = ({ schema }: Props) => {
       ) : (
         <Typography>No pages</Typography>
       )}
+      <Divider sx={{ mb: 2 }} />
       <Stack direction="row" spacing={2} m={4} justifyContent="space-evenly">
         {!isFirst && <ButtonComp data={schema.previousPageButton} onClick={() => setCurrentPage((p) => p - 1)} />}
         {!isLast ? <ButtonComp data={schema.nextPageButton} onClick={handleNext} /> : <ButtonComp data={schema.submitButton} onClick={handleSubmit} />}

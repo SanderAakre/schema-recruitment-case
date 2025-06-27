@@ -3,9 +3,6 @@ import { useEffect, useState } from "react";
 // MUI components
 import { Container, CircularProgress, Alert } from "@mui/material";
 
-// Development data placeholder
-import schemaData from "../public/schemas/schemaData";
-
 // Types/interfaces
 import type { SchemaData } from "./types";
 
@@ -13,34 +10,26 @@ import type { SchemaData } from "./types";
 import SchemaForm from "./modules/SchemaForm";
 
 function App() {
-  const usePlaceholderData = true; // Set to true to use data from schemaData.ts, which is easier for development
-
   const [schema, setSchema] = useState<SchemaData | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    if (!usePlaceholderData) {
-      fetch("/schemas/schemaData.json")
-        .then((res) => {
-          if (!res.ok) throw new Error(`HTTP ${res.status}`);
-          return res.json();
-        })
-        .then((data: SchemaData) => {
-          setSchema(data);
-          setLoading(false);
-        })
-        .catch((err) => {
-          console.error(err);
-          setError(err.message);
-          setLoading(false);
-        });
-    } else {
-      // Use placeholder data for development
-      setSchema(schemaData);
-      setLoading(false);
-    }
-  }, [usePlaceholderData]);
+    fetch(`${import.meta.env.BASE_URL}schemas/schemaData.json`)
+      .then((res) => {
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        return res.json();
+      })
+      .then((data: SchemaData) => {
+        setSchema(data);
+        setLoading(false);
+      })
+      .catch((err) => {
+        console.error(err);
+        setError(err.message);
+        setLoading(false);
+      });
+  }, []);
 
   if (loading) {
     return (

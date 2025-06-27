@@ -34,22 +34,28 @@ const FieldGroup: React.FC<Props> = ({ group, children }) => {
   if (group.collapsable) {
     return (
       <Paper className={group.tailwindClasses} id={`Field group: ${group.name}`} sx={{ borderRadius: 2, p: 2, bgcolor: "background.paper" }}>
-        <Box display="flex" alignItems="center" justifyContent="space-between">
-          <Box id={`Field group: ${group.name} title root`}>
-            <GroupTitleComp data={group.title ?? group.name} />
-          </Box>
-          <IconButton onClick={toggle} size="small">
-            {open ? <ExpandLessIcon /> : <ExpandMoreIcon />}
-          </IconButton>
+        <Box
+          onClick={toggle}
+          display="flex"
+          alignItems="center"
+          justifyContent="space-between"
+          flexDirection="row-reverse"
+          id={`Field group: ${group.name} title root`}
+          sx={{ cursor: "pointer" }}
+        >
+          <IconButton size="small">{open ? <ExpandLessIcon /> : <ExpandMoreIcon />}</IconButton>
+          {group.title && <GroupTitleComp data={group.title} />}
         </Box>
         <Collapse in={open}>
-          <Box mt={1} gap={gapSize}>
+          <Box mt={1} display="flex" flexDirection="column">
             {group.subText && (
               <Box mb={1} id={`Field group: ${group.name} subtext root`}>
                 <TextComp data={group.subText} />
               </Box>
             )}
-            {children}
+            <Box display="flex" flexDirection="column" gap={gapSize}>
+              {children}
+            </Box>
           </Box>
         </Collapse>
       </Paper>
