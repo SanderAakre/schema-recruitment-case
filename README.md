@@ -69,7 +69,7 @@ See `src/types.ts` file for more detailed type definitions.
 - Value constraints (min/max for numbers)
 - Conditional visibility based on other field values (dependencies)
 
-## Installation
+## Development
 
 ```bash
 npm install
