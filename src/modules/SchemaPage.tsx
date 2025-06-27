@@ -1,11 +1,11 @@
-import React, { useImperativeHandle, forwardRef, useRef } from "react";
+import React, { useImperativeHandle, forwardRef, useRef, useState } from "react";
 import { Box } from "@mui/material";
 import SchemaField from "./SchemaField";
 import type { SchemaFieldHandle } from "./SchemaField";
 import FieldGroup from "./FieldGroup";
 import TextComp, { PageTitleComp } from "@/components/TextComp";
 
-import type { PageData, FieldData, GroupData, PageValues, FieldValue } from "@/types";
+import type { PageData, FieldData, GroupData, PageValues, FieldValue, FieldValueMap } from "@/types";
 
 interface Props {
   page: PageData;
@@ -24,6 +24,7 @@ export interface SchemaPageHandle {
  */
 const SchemaPage = forwardRef<SchemaPageHandle, Props>(({ page, onPageValidated }, ref) => {
   const fieldRefs = useRef<Record<string, React.RefObject<SchemaFieldHandle | null>>>({});
+  const [fieldValues, setFieldValues] = useState<FieldValueMap>({});
 
   const fields = page.fields;
   const groups = page.fieldGroups ?? [];
@@ -94,13 +95,29 @@ const SchemaPage = forwardRef<SchemaPageHandle, Props>(({ page, onPageValidated 
             return (
               <FieldGroup key={index} group={item.group}>
                 {item.fields.map((field) => (
-                  <SchemaField key={field.name} field={field} ref={fieldRefs.current[field.name]} />
+                  <SchemaField
+                    key={field.name}
+                    field={field}
+                    ref={fieldRefs.current[field.name]}
+                    parentValues={fieldValues}
+                    onValueChange={(val) => setFieldValues((prev) => ({ ...prev, [field.name]: val }))}
+                    initialValue={fieldValues[field.name]}
+                  />
                 ))}
               </FieldGroup>
             );
           } else {
             const field = item as FieldData;
-            return <SchemaField key={field.name} field={field} ref={fieldRefs.current[field.name]} />;
+            return (
+              <SchemaField
+                key={field.name}
+                field={field}
+                ref={fieldRefs.current[field.name]}
+                parentValues={fieldValues}
+                onValueChange={(val) => setFieldValues((prev) => ({ ...prev, [field.name]: val }))}
+                initialValue={fieldValues[field.name]}
+              />
+            );
           }
         })}
       </Box>

@@ -1,4 +1,4 @@
-import type { FieldData, SelectOption } from "@/types";
+import type { FieldData, FieldConditions, FieldPrimitive } from "@/types";
 
 /**
  * Validates a field value based on its validation conditions.
@@ -7,8 +7,8 @@ import type { FieldData, SelectOption } from "@/types";
  * @param value - The value to validate, can be string, number, boolean, SelectOption, or null/undefined.
  * @returns An error message string if validation fails, or null if valid.
  */
-export function validateFieldValue(field: FieldData, value: string | number | boolean | string[] | SelectOption | null | undefined): string | null {
-  const cond = field.validationConditions;
+export function validateFieldValue(field: FieldData, value: FieldPrimitive | undefined | null, overrideConditions?: FieldConditions): string | null {
+  const cond = overrideConditions ?? field.validationConditions;
 
   // Handle required and empty and reverse conditions
   const isEmpty = value === null || value === undefined || value === "" || (typeof value === "boolean" && value === false);

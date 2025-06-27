@@ -1,5 +1,5 @@
 // React Imports
-import { useState, forwardRef, useImperativeHandle } from "react";
+import { useState, forwardRef, useImperativeHandle, useEffect, useRef } from "react";
 
 // MUI Imports
 import {
@@ -25,10 +25,14 @@ import { FieldTitleComp, SubTextComp } from "@/components/TextComp";
 import { validateFieldValue } from "@/utils/validateFieldValue";
 
 // Types/interfaces
-import type { FieldData, FieldValue } from "@/types";
+import type { FieldData, FieldValue, FieldValueMap, FieldPrimitive } from "@/types";
 
 interface Props {
   field: FieldData;
+  ref?: React.Ref<SchemaFieldHandle>;
+  parentValues?: FieldValueMap;
+  onValueChange?: (value: FieldPrimitive) => void;
+  initialValue?: FieldPrimitive;
 }
 
 export interface SchemaFieldHandle {
@@ -42,16 +46,43 @@ export interface SchemaFieldHandle {
  * @param {FieldData} props.field - The field data containing type, label, options, and other properties.
  * @returns {JSX.Element} The rendered SchemaField component.
  */
-const SchemaField = forwardRef<SchemaFieldHandle, Props>(({ field }, ref) => {
-  const [value, setValue] = useState<string | number | boolean | string[]>(field.defaultValue ?? "");
+const SchemaField = forwardRef<SchemaFieldHandle, Props>(({ field, parentValues, onValueChange, initialValue }, ref) => {
+  const [value, setValue] = useState<FieldPrimitive>(initialValue ?? field.defaultValue ?? "");
   const [error, setError] = useState<string | null>(null);
   const [disabled, setDisabled] = useState(false);
+  const isActiveRef = useRef(true); // Default to active
 
   const { type = "text", tailwindClasses } = field;
   const options = (field.options ?? []).map((opt) => (typeof opt === "string" ? { value: opt, label: opt } : opt));
 
+  useEffect(() => {
+    const active =
+      !field.dependencies?.length ||
+      field.dependencies.every((dep) => {
+        const depValue = parentValues?.[dep.dependsOn];
+
+        if (!dep.condition) {
+          return depValue !== undefined && depValue !== "" && depValue !== null;
+        }
+
+        const validationError = validateFieldValue({ name: field.name, type: "text", required: true }, depValue, dep.condition);
+
+        return !validationError;
+      });
+
+    isActiveRef.current = active;
+    setDisabled(!active);
+  }, [field, parentValues]);
+
   useImperativeHandle(ref, () => ({
     validate: () => {
+      if (!isActiveRef.current) {
+        return {
+          fieldName: field.name,
+          value: JSON.stringify(value),
+          valid: true,
+        };
+      }
       const error = validateFieldValue(field, value);
       setError(error);
       return {
@@ -62,6 +93,14 @@ const SchemaField = forwardRef<SchemaFieldHandle, Props>(({ field }, ref) => {
       };
     },
   }));
+
+  useEffect(() => {
+    onValueChange?.(value);
+    if (error) {
+      setError(null); // Clear error when value changes to avoid stale errors
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [value]);
 
   return (
     <Box className={tailwindClasses}>
@@ -87,9 +126,6 @@ const SchemaField = forwardRef<SchemaFieldHandle, Props>(({ field }, ref) => {
                 onChange={(e) => {
                   const val = field.type === "number" ? Number(e.target.value) : e.target.value;
                   setValue(val);
-                  if (error) {
-                    setError(null); // Clear error on change
-                  }
                 }}
                 multiline={type === "comment" ? true : false}
                 rows={type === "comment" ? 4 : 1}
@@ -104,14 +140,16 @@ const SchemaField = forwardRef<SchemaFieldHandle, Props>(({ field }, ref) => {
                 {/* Checkbox */}
                 {type === "checkbox" && (
                   <FormControlLabel
-                    value={value}
                     label={field.label ?? field.name}
-                    defaultChecked={!!field.defaultValue}
-                    control={<Checkbox />}
-                    onChange={(e) => {
-                      setValue((e.target as HTMLInputElement).checked);
-                      if (error) setError(null);
-                    }}
+                    control={
+                      <Checkbox
+                        checked={!!value}
+                        onChange={(e) => {
+                          const val = e.target.checked;
+                          setValue(val);
+                        }}
+                      />
+                    }
                   />
                 )}
 
@@ -122,21 +160,21 @@ const SchemaField = forwardRef<SchemaFieldHandle, Props>(({ field }, ref) => {
                       <FormControlLabel
                         key={opt.value}
                         value={opt.value}
-                        control={<Checkbox />}
                         label={opt.label ?? opt.value}
-                        defaultChecked={Array.isArray(field.defaultValue) && field.defaultValue.includes(opt.value)}
-                        onChange={(e) => {
-                          const checked = (e.target as HTMLInputElement).checked;
-                          const val = opt.value;
-
-                          setValue((prev) => {
-                            const arr = Array.isArray(prev) ? prev : [];
-                            const newValues = checked ? [...arr, val] : arr.filter((v) => v !== val);
-
-                            if (error) setError(null);
-                            return newValues;
-                          });
-                        }}
+                        control={
+                          <Checkbox
+                            checked={Array.isArray(value) && value.includes(opt.value)}
+                            onChange={(e) => {
+                              const checked = e.target.checked;
+                              const val = opt.value;
+                              setValue((prev) => {
+                                const arr = Array.isArray(prev) ? prev : [];
+                                const newValues = checked ? [...arr, val] : arr.filter((v) => v !== val);
+                                return newValues;
+                              });
+                            }}
+                          />
+                        }
                       />
                     ))}
                   </FormGroup>
@@ -154,7 +192,6 @@ const SchemaField = forwardRef<SchemaFieldHandle, Props>(({ field }, ref) => {
                         defaultChecked={field.defaultValue === true}
                         onChange={() => {
                           setValue(opt.value);
-                          if (error) setError(null);
                         }}
                       />
                     ))}
@@ -185,7 +222,6 @@ const SchemaField = forwardRef<SchemaFieldHandle, Props>(({ field }, ref) => {
                     error={!!error}
                     onChange={(e) => {
                       setValue(e.target.value);
-                      if (error) setError(null);
                     }}
                     renderValue={(selected) => {
                       if (selected === "") {

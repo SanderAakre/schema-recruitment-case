@@ -46,7 +46,7 @@ const SchemaForm = ({ schema }: Props) => {
   };
 
   return (
-    <Box id="Schema container root" className={schema.tailwindClasses}>
+    <Box id="Schema container root">
       {schema.title && (
         <Box mb={2}>
           <TitleComp data={schema.title} />
