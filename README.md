@@ -76,6 +76,8 @@ npm install
 npm run dev
 ```
 
-## Note
+## Notes
 
-The project is made to import
+- The project is made to import a JSON file, but to make it easier to test, the JSON data is hardcoded in `public/schemas/schemaData.ts`. Changing the `usePlaceholderData` variable in `src/App.tsx` will switch between using the hardcoded data or fetching from a JSON file.
+
+- I made this in a couple of days, so there are probaly loads of bugs..
