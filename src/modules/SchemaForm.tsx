@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 
 // MUI components
 import { Box, Typography, Stack, Divider } from "@mui/material";
@@ -25,6 +25,7 @@ interface Props {
  */
 const SchemaForm = ({ schema }: Props) => {
   const [formData, setFormData] = useState<PageValues[]>([]);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const [currentPage, setCurrentPage] = useState(0);
   const pageRef = useRef<SchemaPageHandle>(null);
@@ -39,11 +40,37 @@ const SchemaForm = ({ schema }: Props) => {
   };
 
   const handleSubmit = () => {
-    if (pageRef.current?.validateAllFields()) {
-      console.log("Final Form Data:", formData);
-      alert("Form submitted!");
-    }
+    setIsSubmitting(true);
+    pageRef.current?.validateAllFields(); // This triggers onPageValidated
   };
+
+  useEffect(() => {
+    if (!isSubmitting) return;
+
+    const allPageNames = pages.map((p) => p.name).filter((name): name is string => typeof name === "string");
+    const validatedNames = formData.map((p) => p.pageName).filter((name): name is string => typeof name === "string");
+
+    const allPresent = allPageNames.every((name) => validatedNames.includes(name));
+
+    if (allPresent) {
+      setIsSubmitting(false);
+      console.group("Final Form Submission");
+
+      formData.forEach((page) => {
+        console.group(`Page: ${page.pageName}`);
+        page.fields.forEach((field) => {
+          console.log(`${field.fieldName}:`, field.value);
+        });
+        console.groupEnd();
+      });
+      console.groupEnd();
+
+      console.log("Raw formData object:", formData);
+
+      alert("Form submitted! Check console for data.");
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [formData, isSubmitting]);
 
   return (
     <Box id="Schema container root">
