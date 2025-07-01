@@ -61,8 +61,25 @@ export function validateFieldValue(field: FieldData, value: FieldPrimitive | und
     }
 
     // regex
-    if (typeof value === "string" && cond.regex && !cond.regex.test(value)) {
-      return cond.regexErrorText ?? "This value does not match the required format";
+    if (typeof value === "string" && cond.regex) {
+      let regex: RegExp;
+      if (cond.regex instanceof RegExp) {
+        regex = cond.regex;
+      } else if (typeof cond.regex === "string") {
+        // Convert "/abc/i" => new RegExp("abc", "i")
+        const match = (cond.regex as string).match(/^\/(.+)\/([gimsuy]*)$/);
+        if (match) {
+          regex = new RegExp(match[1], match[2]);
+        } else {
+          regex = new RegExp(cond.regex); // fallback
+        }
+      } else {
+        return "Invalid regex pattern";
+      }
+
+      if (!regex.test(value)) {
+        return cond.regexErrorText ?? "This value does not match the required format";
+      }
     }
   }
 
