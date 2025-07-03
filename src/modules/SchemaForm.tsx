@@ -40,8 +40,9 @@ const SchemaForm = ({ schema }: Props) => {
   };
 
   const handleSubmit = () => {
-    setIsSubmitting(true);
-    pageRef.current?.validateAllFields(); // This triggers onPageValidated
+    if (pageRef.current?.validateAllFields()) {
+      setIsSubmitting(true);
+    }
   };
 
   useEffect(() => {
