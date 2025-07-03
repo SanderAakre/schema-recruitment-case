@@ -2,7 +2,7 @@
 
 This project is a React-based dynamic form system that generates pages and input fields based on a JSON schema. It supports grouping, field validation, dependencies, and customizable field types using Material UI (MUI).
 
-## Main Features
+## Features
 
 - Dynamic page and field generation from JSON schema
 - Modular components (Field, Group, Page, Form) build from the JSON data
@@ -12,13 +12,8 @@ This project is a React-based dynamic form system that generates pages and input
 - Dependency-based field visibility (Fields can be deactivated or activated based on the value of other fields)
 - Fully typed with TypeScript
 - Lots of default values and options for each field type, both to avoid errors and to make it easier to use
-
-### Unfinished/Partially Implemented Features
-
-These features were planned for and therefore might have some code related to them, but they are not fully implemented:
-
-- Customizable with Tailwind classes in through JSON data (Was going to be used to easely customize styles in the form of a string added to the field data)
 - Importing select field options from a JSON file (Usefull for large sets of options, like countries, cities, etc.)
+- Customizable with Tailwind classes in through JSON data (Works well for adding colors, margins, paddings, etc. to specific fields fields, groups, and pages. For more advanced styling a more complex setup is needed)
 
 ## Stack
 
