@@ -431,6 +431,62 @@
           }
         }
       ]
+    },
+    {
+      "name": "Side 4",
+      "title": "Side 4 - Stil og Tilpasning",
+      "subText": "Denne siden viser hvordan felt og grupper kan styles med Tailwind CSS gjennom JSON konfigurasjonen.",
+      "tailwindClasses": "bg-blue-100 p-6 rounded-lg shadow-md",
+      "fieldGroups": [
+        {
+          "name": "Gruppe 4-1",
+          "title": "Stil og Tilpasning",
+          "subText": "Denne gruppen inneholder felter med tilpasset stil.",
+          "gapSize": "normal",
+          "tailwindClasses": "bg-gray-50 p-4 rounded-lg shadow-sm"
+        },
+        {
+          "name": "Gruppe 4-2",
+          "title": "Stil med Tailwind CSS",
+          "subText": "Denne gruppen viser hvordan du kan bruke Tailwind CSS for å style felter.",
+          "gapSize": "normal",
+          "tailwindClasses": "bg-blue-50 p-4 rounded-lg shadow-sm"
+        }
+      ],
+      "fields": [
+        {
+          "name": "stilFelt1",
+          "type": "text",
+          "label": "Tekstfelt med tilpasset stil",
+          "placeholder": "Skriv noe her...",
+          "tailwindClasses": "bg-gray-100 border-gray-300 rounded-md p-2",
+          "groupName": "Gruppe 4-1"
+        },
+        {
+          "name": "stilFelt2",
+          "type": "text",
+          "label": "Tekstfelt med annen tilpasset stil",
+          "placeholder": "Skriv noe annet her...",
+          "tailwindClasses": "bg-blue-100 border-blue-300 rounded-lg p-4",
+          "groupName": "Gruppe 4-1"
+        },
+        {
+          "name": "stilFelt3",
+          "type": "text",
+          "label": "Tekstfelt med Tailwind CSS stil",
+          "placeholder": "Skriv noe her...",
+          "tailwindClasses": "bg-green-100 border-green-300 rounded-md p-2",
+          "groupName": "Gruppe 4-2"
+        },
+        {
+          "name": "stilFelt4",
+          "type": "text",
+          "label": "Enda et tekstfelt med Tailwind CSS stil",
+          "placeholder": "Skriv noe annet her...",
+          "tailwindClasses": "bg-yellow-100 border-yellow-300 rounded-lg p-4",
+          "groupName": "Gruppe 4-2"
+        }
+      ]
     }
   ]
 }
