@@ -435,56 +435,66 @@
     {
       "name": "Side 4",
       "title": "Side 4 - Stil og Tilpasning",
-      "subText": "Denne siden viser hvordan felt og grupper kan styles med Tailwind CSS gjennom JSON konfigurasjonen.",
-      "tailwindClasses": "bg-blue-100 p-6 rounded-lg shadow-md",
+      "subText": {
+        "spans": [
+          {
+            "text": "Hver side, gruppe og felt kan tilpasses med et "
+          },
+          {
+            "text": "Tailwind CSS",
+            "link": "https://tailwindcss.com/",
+            "underline": true
+          },
+          {
+            "text": " `classname` for å endre utseendet."
+          },
+          {
+            "text": "\n\n"
+          },
+          {
+            "text": "Obs: ",
+            "bold": true
+          },
+          {
+            "text": "Denne funksjonaliteten er kun for å raskt kunne legge til enkel styling som farger, borders, padding, osv. og er ikke ment for avansert styling."
+          }
+        ]
+      },
+      "tailwindClasses": "bg-blue-50 border-2 border-blue-200 p-4 rounded-lg shadow-lg",
       "fieldGroups": [
         {
           "name": "Gruppe 4-1",
-          "title": "Stil og Tilpasning",
-          "subText": "Denne gruppen inneholder felter med tilpasset stil.",
+          "title": "Stilisert gruppe 1",
           "gapSize": "normal",
-          "tailwindClasses": "bg-gray-50 p-4 rounded-lg shadow-sm"
-        },
-        {
-          "name": "Gruppe 4-2",
-          "title": "Stil med Tailwind CSS",
-          "subText": "Denne gruppen viser hvordan du kan bruke Tailwind CSS for å style felter.",
-          "gapSize": "normal",
-          "tailwindClasses": "bg-blue-50 p-4 rounded-lg shadow-sm"
+          "collapsable": true,
+          "startCollapsed": true,
+          "tailwindClasses": "border-red-600 border-2 shadow-lg"
         }
       ],
       "fields": [
         {
-          "name": "stilFelt1",
+          "name": "stilTekstFelt1",
           "type": "text",
-          "label": "Tekstfelt med tilpasset stil",
+          "title": "Stilisert Tekstfelt",
           "placeholder": "Skriv noe her...",
-          "tailwindClasses": "bg-gray-100 border-gray-300 rounded-md p-2",
+          "label": "Tekstfelt med tilpasset stil",
+          "tailwindClasses": "bg-gray-100 border-gray-300 border-1 rounded-md p-2 mt-2",
           "groupName": "Gruppe 4-1"
         },
         {
-          "name": "stilFelt2",
-          "type": "text",
-          "label": "Tekstfelt med annen tilpasset stil",
-          "placeholder": "Skriv noe annet her...",
-          "tailwindClasses": "bg-blue-100 border-blue-300 rounded-lg p-4",
+          "name": "stilboks1",
+          "type": "checkbox",
+          "label": "Sjekkboks med hovereffekt",
+          "tailwindClasses": "transition-colors duration-200 border-2 border-transparent hover:border-[#4F8A8B] hover:text-[#4F8A8B] px-2 rounded-md",
           "groupName": "Gruppe 4-1"
         },
         {
-          "name": "stilFelt3",
+          "name": "stilTekstFelt2",
           "type": "text",
+          "title": "Stilisert Tekstfelt",
           "label": "Tekstfelt med Tailwind CSS stil",
           "placeholder": "Skriv noe her...",
-          "tailwindClasses": "bg-green-100 border-green-300 rounded-md p-2",
-          "groupName": "Gruppe 4-2"
-        },
-        {
-          "name": "stilFelt4",
-          "type": "text",
-          "label": "Enda et tekstfelt med Tailwind CSS stil",
-          "placeholder": "Skriv noe annet her...",
-          "tailwindClasses": "bg-yellow-100 border-yellow-300 rounded-lg p-4",
-          "groupName": "Gruppe 4-2"
+          "tailwindClasses": "bg-white border-1 rounded-xl shadow-lg p-2 border-[#4F8A8B]"
         }
       ]
     }
